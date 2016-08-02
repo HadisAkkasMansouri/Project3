@@ -2,7 +2,6 @@ package ir.dotin.business;
 
 import ir.dotin.dataAccess.RealCustomerDao;
 import ir.dotin.entities.RealCustomer;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
