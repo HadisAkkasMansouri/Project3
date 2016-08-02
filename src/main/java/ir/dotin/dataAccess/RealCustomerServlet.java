@@ -10,6 +10,7 @@ public class RealCustomerServlet extends HttpServlet {
 
 
     RealCustomer realCustomer = new RealCustomer();
+    RealCustomerDao dao = new RealCustomerDao();
 
     protected void addRealCustomer(HttpServletRequest request, HttpServletResponse response){
 
@@ -18,5 +19,9 @@ public class RealCustomerServlet extends HttpServlet {
         realCustomer.setFatherName(request.getParameter("FATHER_NAME"));
         realCustomer.setBirthDate(request.getParameter("BIRTH_DATE"));
         realCustomer.setNationalId(request.getParameter("NATIONAL_ID"));
+
+        boolean result = dao.addRealCustomer();
+
+
     }
 }
