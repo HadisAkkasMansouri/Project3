@@ -2,8 +2,6 @@ package ir.dotin.dataAccess;
 
 import ir.dotin.entities.RealCustomer;
 import ir.dotin.utility.SingleConnection;
-
-import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RealCustomerDao extends HttpServlet {
+public class RealCustomerDao {
 
     Connection connection = null;
     PreparedStatement preparedStatement;
