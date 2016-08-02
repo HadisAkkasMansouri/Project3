@@ -23,18 +23,18 @@ public class RealCustomerDao {
         }
     }
 
-    RealCustomer realCustomer = new RealCustomer();
+    RealCustomer realCustomer = null;
 
     public boolean addRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) {
 
         try {
             String query = "insert into REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, REAL_CUSTOMER_ID) values (?, ?, ?, ?, ?, ?);";
             System.out.println(query);
-            preparedStatement.setString(1, realCustomer.getName());
-            preparedStatement.setString(2, realCustomer.getFamilyName());
-            preparedStatement.setString(3, realCustomer.getFatherName());
-            preparedStatement.setString(4, realCustomer.getBirthDate());
-            preparedStatement.setString(5, realCustomer.getNationalId());
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, familyName);
+            preparedStatement.setString(3, fatherName);
+            preparedStatement.setString(4, birthDate);
+            preparedStatement.setString(5, nationalId);
             //????       preparedStatement.setString(6, realCustomer.getRealCustomerId());
             preparedStatement.executeUpdate();
             connection.commit();
@@ -58,7 +58,7 @@ public class RealCustomerDao {
         try {
             String query = "delete REAL_CUSTOMER where REAL_CUSTOMER_ID = ?;";
             System.out.println(query);
-            preparedStatement.setString(1, realCustomer.getRealCustomerId());
+            preparedStatement.setString(1, realCustomerId);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -75,17 +75,19 @@ public class RealCustomerDao {
     }
 
     public List<RealCustomer> searchRealCustomer(String name, String familyName, String nationalId, String realCustomerId) {
+
         List<RealCustomer> customerList = new ArrayList<RealCustomer>();
         try {
             String query = "select * from REAL_CUSTOMER where NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
             System.out.println(query);
-            preparedStatement.setString(1, realCustomer.getName());
-            preparedStatement.setString(2, realCustomer.getFamilyName());
-            preparedStatement.setString(3, realCustomer.getNationalId());
-            preparedStatement.setString(4, realCustomer.getRealCustomerId());
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, familyName);
+            preparedStatement.setString(3, nationalId);
+            preparedStatement.setString(4, realCustomerId);
             ResultSet executeQuery = preparedStatement.executeQuery();
 
             while (executeQuery.next()) {
+                realCustomer = new RealCustomer();
                 realCustomer.setName(executeQuery.getString(1));
                 realCustomer.setFamilyName(executeQuery.getString(2));
                 realCustomer.setFatherName(executeQuery.getString(3));
@@ -117,10 +119,11 @@ public class RealCustomerDao {
         try {
             String query = "select * from REAL_CUSTOMER where REAL_CUSTOMER_ID = ?";
             System.out.println(query);
-            preparedStatement.setString(4, realCustomer.getRealCustomerId());
+            preparedStatement.setString(4, realCustomerId);
             ResultSet executeQuery = preparedStatement.executeQuery();
 
             while (executeQuery.next()) {
+                realCustomer = new RealCustomer();
                 realCustomer.setName(executeQuery.getString(1));
                 realCustomer.setFamilyName(executeQuery.getString(2));
                 realCustomer.setFatherName(executeQuery.getString(3));
