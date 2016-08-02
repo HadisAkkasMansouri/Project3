@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>legalCustomer</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .capitalize {
+            font-size: 3.8em;
+            color: cornsilk;
+            text-align: right;
+            line-height: 3.2;
+            margin-right: 3cm;
+        }
+
+        a:link, a:visited {
+            margin: 10px;
+            background-color: khaki;
+            color: brown;
+            text-align: center;
+            display: inline-block;
+            width: 17%;
+            height: 50%;
+            line-height: 2.8;
+            margin-left: 2.4cm;
+        }
+
+        a:hover, a:active {
+            background-color: chocolate;
+        }
+
+        .onclick {
+            position: static;
+            left: 100%;
+            top: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<p class="capitalize">سامانه کاربران حقوقی</p>
+<a href="searchLegalCustomer.html" target="_blank">جست و جوی کاربر</a>
+<a href="addLegalCustomer.html" target="_blank">اضافه کردن کاربر</a>
+<a href="editLegalCustomer.html" target="_blank">اصلاح کاربر</a>
+<a href="deleteLegalCustomer.html" target="_blank">حذف کاربر</a>
+<button onclick="goBack()">صفحه قبل <<</button>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>
