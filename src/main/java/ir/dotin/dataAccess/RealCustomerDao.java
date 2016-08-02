@@ -25,16 +25,16 @@ public class RealCustomerDao {
 
     RealCustomer realCustomer = null;
 
-    public boolean addRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) {
+    public boolean addRealCustomer(RealCustomer realCustomer) {
 
         try {
             String query = "insert into REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, REAL_CUSTOMER_ID) values (?, ?, ?, ?, ?, ?);";
             System.out.println(query);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, familyName);
-            preparedStatement.setString(3, fatherName);
-            preparedStatement.setString(4, birthDate);
-            preparedStatement.setString(5, nationalId);
+            preparedStatement.setString(1, realCustomer.getName());
+            preparedStatement.setString(2, realCustomer.getFamilyName());
+            preparedStatement.setString(3, realCustomer.getFatherName());
+            preparedStatement.setString(4, realCustomer.getBirthDate());
+            preparedStatement.setString(5, realCustomer.getNationalId());
             //????       preparedStatement.setString(6, realCustomer.getRealCustomerId());
             preparedStatement.executeUpdate();
             connection.commit();
