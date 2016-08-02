@@ -2,6 +2,7 @@ package ir.dotin.dataAccess;
 
 import ir.dotin.entities.RealCustomer;
 import ir.dotin.utility.SingleConnection;
+
 import javax.servlet.http.HttpServlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,18 +76,18 @@ public class RealCustomerDao extends HttpServlet {
         }
     }
 
-    public List<RealCustomer> searchRealCustomer (String name, String familyName, String nationalId, String legalCustomerId){
+    public List<RealCustomer> searchRealCustomer(String name, String familyName, String nationalId, String legalCustomerId) {
         List<RealCustomer> customerList = new ArrayList<RealCustomer>();
         try {
-        String query = "select * from REAL_CUSTOMER where NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
-        System.out.println(query);
+            String query = "select * from REAL_CUSTOMER where NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
+            System.out.println(query);
             preparedStatement.setString(1, realCustomer.getName());
             preparedStatement.setString(2, realCustomer.getFamilyName());
             preparedStatement.setString(3, realCustomer.getNationalId());
             preparedStatement.setString(4, realCustomer.getRealCustomerId());
             ResultSet executeQuery = preparedStatement.executeQuery();
 
-            while (executeQuery.next()){
+            while (executeQuery.next()) {
                 realCustomer.setName(executeQuery.getString(1));
                 realCustomer.setFamilyName(executeQuery.getString(2));
                 realCustomer.setFatherName(executeQuery.getString(3));
@@ -98,22 +99,22 @@ public class RealCustomerDao extends HttpServlet {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-                try {
-                    if (preparedStatement != null){
-                        preparedStatement.close();
-                    }
-                    if (connection != null){
-                        connection.close();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
                 }
             } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                e.printStackTrace();
+            }
         }
-        return  customerList;
+        return customerList;
     }
 
-    public RealCustomer searchRealCustomerWithNI(String legalCustomerId){
+    public RealCustomer searchRealCustomerWithNI(String legalCustomerId) {
 
         try {
             String query = "select * from REAL_CUSTOMER where REAL_CUSTOMER_ID = ?";
@@ -121,7 +122,7 @@ public class RealCustomerDao extends HttpServlet {
             preparedStatement.setString(4, realCustomer.getRealCustomerId());
             ResultSet executeQuery = preparedStatement.executeQuery();
 
-            while (executeQuery.next()){
+            while (executeQuery.next()) {
                 realCustomer.setName(executeQuery.getString(1));
                 realCustomer.setFamilyName(executeQuery.getString(2));
                 realCustomer.setFatherName(executeQuery.getString(3));
@@ -133,7 +134,7 @@ public class RealCustomerDao extends HttpServlet {
             e.printStackTrace();
         } finally {
             try {
-                if (connection != null){
+                if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
