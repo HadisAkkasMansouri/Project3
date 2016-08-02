@@ -32,7 +32,11 @@
             background-color: chocolate;
         }
         .style{
-            bottom:10%;
+
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            z-index: -1;
         }
 
     </style>
@@ -40,16 +44,13 @@
 <body>
 <p class="capitalize">سامانه کاربران حقیقی</p>
 <div style="width: 100%;">
-
     <a href="searchRealCustomer.html" target="_blank">جست و جوی کاربر</a>
     <a href="addRealCustomer.html" target="_blank">اضافه کردن کاربر</a>
     <a href="editRealCustomer.html" target="_blank">اصلاح کاربر</a>
     <a href="deleteRealCustomer.html" target="_blank">حذف کاربر</a>
-
 </div>
-<div style="width: 100%;">
+<div class="style">
 <button onclick="goBack()">صفحه قبل <<</button>
-
 </div>
 <script>
     function goBack() {

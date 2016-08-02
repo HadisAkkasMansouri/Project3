@@ -1,18 +1,19 @@
-package ir.dotin.dataAccess;
+package ir.dotin.business;
 
+import ir.dotin.dataAccess.RealCustomerDao;
 import ir.dotin.entities.RealCustomer;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RealCustomerServlet extends HttpServlet {
+public class AddRealCustomerServlet extends HttpServlet {
 
 
     RealCustomer realCustomer = new RealCustomer();
     RealCustomerDao dao = new RealCustomerDao();
 
-    protected void proccessRealCustomerRequest(HttpServletRequest request, HttpServletResponse response){
+    protected void addRealCustomerRequest(HttpServletRequest request, HttpServletResponse response){
 
         realCustomer.setName(request.getParameter("NAME"));
         realCustomer.setFamilyName(request.getParameter("FAMILY_NAME"));
@@ -29,10 +30,10 @@ public class RealCustomerServlet extends HttpServlet {
     }
 
     protected void sendResoponse(HttpServletRequest request, HttpServletResponse response){
-        proccessRealCustomerRequest(request, response);
+        addRealCustomerRequest(request, response);
     }
 
     protected void receiveRequest(HttpServletRequest request, HttpServletResponse response){
-        proccessRealCustomerRequest(request, response);
+        addRealCustomerRequest(request, response);
     }
 }
