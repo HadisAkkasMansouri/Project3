@@ -2,7 +2,6 @@ package ir.dotin.dataAccess;
 
 import ir.dotin.entities.LegalCustomer;
 import ir.dotin.utility.SingleConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +22,8 @@ public class LegalCustomerDao {
             e.printStackTrace();
         }
     }
+
+    LegalCustomer legalCustomer = null;
 
     public boolean addLegalCustomer(LegalCustomer legalCustomer) {
 
@@ -71,7 +72,8 @@ public class LegalCustomerDao {
         }
     }
 
-    public List<LegalCustomer> searchLegalCustomer(String companyName, String economicId, String legalCustomerId) {
+    public List<LegalCustomer> searchLegalCustomer(String companyName, String economicId, String legalCustomerId){
+
         List<LegalCustomer> legalCustomerList = new ArrayList<LegalCustomer>();
         try {
             String query = "select * from LEGAL_CUSTOMER where COMANEY_NAME = ? and ECONOMIC_ID = ?  and LEGAL_CUSTOMER_ID = ?;";
@@ -106,7 +108,6 @@ public class LegalCustomerDao {
 
     public LegalCustomer searchLegalCustomerWithEI(String legalCustomerId) {
 
-        LegalCustomer legalCustomer = null;
         try {
             String query = "select * from LEGAL_CUSTOMER where LEGAL_CUSTOMER_ID = ?";
             System.out.println(query);
