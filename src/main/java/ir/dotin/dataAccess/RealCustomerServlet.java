@@ -12,7 +12,7 @@ public class RealCustomerServlet extends HttpServlet {
     RealCustomer realCustomer = new RealCustomer();
     RealCustomerDao dao = new RealCustomerDao();
 
-    protected void addRealCustomer(HttpServletRequest request, HttpServletResponse response){
+    protected void proccessRealCustomerRequest(HttpServletRequest request, HttpServletResponse response){
 
         realCustomer.setName(request.getParameter("NAME"));
         realCustomer.setFamilyName(request.getParameter("FAMILY_NAME"));
@@ -20,8 +20,19 @@ public class RealCustomerServlet extends HttpServlet {
         realCustomer.setBirthDate(request.getParameter("BIRTH_DATE"));
         realCustomer.setNationalId(request.getParameter("NATIONAL_ID"));
 
-        boolean result = dao.addRealCustomer();
+//        boolean result = dao.addRealCustomer(realCustomer);
+//        if (result){
+//            response.sendRedirect();
+//        }else {
+//            response.sendRedirect();
+//        }
+    }
 
+    protected void sendResoponse(HttpServletRequest request, HttpServletResponse response){
+        proccessRealCustomerRequest(request, response);
+    }
 
+    protected void receiveRequest(HttpServletRequest request, HttpServletResponse response){
+        proccessRealCustomerRequest(request, response);
     }
 }
