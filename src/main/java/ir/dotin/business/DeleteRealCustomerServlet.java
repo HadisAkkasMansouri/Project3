@@ -1,4 +1,6 @@
 package ir.dotin.business;
 
-public class DeleteRealCustomerServlet {
+import javax.servlet.http.HttpServlet;
+
+public class DeleteRealCustomerServlet extends HttpServlet{
 }

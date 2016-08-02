@@ -1,4 +1,6 @@
 package ir.dotin.business;
 
-public class UpdateLegalCustomerServlet {
+import javax.servlet.http.HttpServlet;
+
+public class UpdateLegalCustomerServlet extends HttpServlet{
 }
