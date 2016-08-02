@@ -53,7 +53,7 @@ public class RealCustomerDao {
         return true;
     }
 
-    public void deleteRealCustomer(String legalCustomerId) {
+    public void deleteRealCustomer(String realCustomerId) {
 
         try {
             String query = "delete REAL_CUSTOMER where REAL_CUSTOMER_ID = ?;";
@@ -74,7 +74,7 @@ public class RealCustomerDao {
         }
     }
 
-    public List<RealCustomer> searchRealCustomer(String name, String familyName, String nationalId, String legalCustomerId) {
+    public List<RealCustomer> searchRealCustomer(String name, String familyName, String nationalId, String realCustomerId) {
         List<RealCustomer> customerList = new ArrayList<RealCustomer>();
         try {
             String query = "select * from REAL_CUSTOMER where NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
@@ -112,7 +112,7 @@ public class RealCustomerDao {
         return customerList;
     }
 
-    public RealCustomer searchRealCustomerWithNI(String legalCustomerId) {
+    public RealCustomer searchRealCustomerWithNI(String realCustomerId) {
 
         try {
             String query = "select * from REAL_CUSTOMER where REAL_CUSTOMER_ID = ?";
