@@ -24,8 +24,6 @@ public class LegalCustomerDao {
         }
     }
 
-//    LegalCustomer legalCustomer = new LegalCustomer();
-
     public boolean addLegalCustomer(LegalCustomer legalCustomer) {
 
         try {
@@ -57,7 +55,7 @@ public class LegalCustomerDao {
         try {
             String query = "delete LEGAL_CUSTOMER where LEGAL_CUSTOMER_ID = ?;";
             System.out.println(query);
-            preparedStatement.setString(1, legalCustomer.getLegalCustomerId());
+            preparedStatement.setString(1, legalCustomerId);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -108,6 +106,7 @@ public class LegalCustomerDao {
 
     public LegalCustomer searchLegalCustomerWithEI(String legalCustomerId) {
 
+        LegalCustomer legalCustomer = null;
         try {
             String query = "select * from LEGAL_CUSTOMER where LEGAL_CUSTOMER_ID = ?";
             System.out.println(query);
@@ -115,7 +114,7 @@ public class LegalCustomerDao {
             ResultSet executeQuery = preparedStatement.executeQuery();
 
             while (executeQuery.next()) {
-                LegalCustomer legalCustomer = new LegalCustomer();
+                legalCustomer = new LegalCustomer();
                 legalCustomer.setCompanyName(executeQuery.getString(1));
                 legalCustomer.setRegistrationDate(executeQuery.getString(2));
                 legalCustomer.setEconomicId(executeQuery.getString(3));
