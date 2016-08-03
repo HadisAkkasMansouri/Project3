@@ -26,11 +26,11 @@ public class AddLegalCustomerServlet extends HttpServlet{
 //        }
     }
 
-    protected void sendResoponse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         addLegalCustomerRequest(request, response);
     }
 
-    protected void receiveRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         addLegalCustomerRequest(request, response);
     }
 }
