@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AddLegalCustomerServlet extends HttpServlet{
+
     LegalCustomer legalCustomer = new LegalCustomer();
     LegalCustomerDao dao = new LegalCustomerDao();
 
     protected void addLegalCustomerRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        legalCustomer.setCompanyName(request.getParameter("COMPANY_NAME"));
-        legalCustomer.setEconomicId(request.getParameter("ECONOMIC_ID"));
-        legalCustomer.setRegistrationDate(request.getParameter("REGISTRATION_DATE"));
+        legalCustomer.setCompanyName(request.getParameter("CompaneyName"));
+        legalCustomer.setEconomicId(request.getParameter("EconomicId"));
+        legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
 
         boolean result = dao.addLegalCustomer(legalCustomer);
 //        if (result){
