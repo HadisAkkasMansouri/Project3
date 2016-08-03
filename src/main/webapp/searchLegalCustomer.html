@@ -23,6 +23,12 @@
             text-align: center;
             background-color: darkgoldenrod;
         }
+        .style {
+            position: absolute;
+            left: 90px;
+            bottom: 150px;
+            z-index: -1;
+        }
 
     </style>
 </head>
@@ -43,5 +49,13 @@
         <button type="submit" value="search"><b>جست و جو</b></button>
     </fieldset>
 </form>
+<div class="style">
+    <button onclick="goBack()">صفحه قبل <<</button>
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>
