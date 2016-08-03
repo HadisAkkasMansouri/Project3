@@ -16,11 +16,11 @@ public class AddRealCustomerServlet extends HttpServlet {
 
     protected void addRealCustomerRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        realCustomer.setName(request.getParameter("NAME"));
-        realCustomer.setFamilyName(request.getParameter("FAMILY_NAME"));
-        realCustomer.setFatherName(request.getParameter("FATHER_NAME"));
-        realCustomer.setBirthDate(request.getParameter("BIRTH_DATE"));
-        realCustomer.setNationalId(request.getParameter("NATIONAL_ID"));
+        realCustomer.setName(request.getParameter("Name"));
+        realCustomer.setFamilyName(request.getParameter("FamilyName"));
+        realCustomer.setFatherName(request.getParameter("FatherName"));
+        realCustomer.setBirthDate(request.getParameter("BirthDate"));
+        realCustomer.setNationalId(request.getParameter("NationalId"));
 
 //        boolean result = dao.addRealCustomer(realCustomer);
 //        if (result){
