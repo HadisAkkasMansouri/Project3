@@ -1,7 +1,8 @@
 package ir.dotin.presentation;
 
-import ir.dotin.dataaccess.LegalCustomerDao;
 import ir.dotin.dataaccess.LegalCustomer;
+import ir.dotin.dataaccess.LegalCustomerDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
