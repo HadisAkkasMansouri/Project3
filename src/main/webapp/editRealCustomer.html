@@ -17,10 +17,24 @@
             line-height: 2.8;
             margin-right: 3cm;
         }
+        .style {
+            position: absolute;
+            left: 90px;
+            bottom: 150px;
+            z-index: -1;
+        }
 
     </style>
 </head>
 <body>
 <p class="capitalize">اصلاح کاربر حقیقی</p>
+<div class="style">
+    <button onclick="goBack()">صفحه قبل <<</button>
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>

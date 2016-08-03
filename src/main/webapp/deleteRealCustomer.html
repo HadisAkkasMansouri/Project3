@@ -24,6 +24,13 @@
             background-color: darkgoldenrod;
         }
 
+        .style {
+            position: absolute;
+            left: 90px;
+            bottom: 150px;
+            z-index: -1;
+        }
+
     </style>
 </head>
 <body>
@@ -38,5 +45,13 @@
         <button type="submit" value="RegistrateInformation"><b>حذف</b></button>
     </fieldset>
 </form>
+<div class="style">
+    <button onclick="goBack()">صفحه قبل <<</button>
+</div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
 </html>
