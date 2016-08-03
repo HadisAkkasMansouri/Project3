@@ -20,11 +20,11 @@ public class AddLegalCustomerServlet extends HttpServlet{
         legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
 
         boolean result = dao.addLegalCustomer(legalCustomer);
-//        if (result){
-//            response.sendRedirect();
-//        }else {
-//            response.sendRedirect();
-//        }
+        if (result){
+            response.sendRedirect("addLegalCustomer.html");
+        }else {
+            response.sendRedirect("addLegalCustomer.html");
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

@@ -22,12 +22,12 @@ public class AddRealCustomerServlet extends HttpServlet {
         realCustomer.setBirthDate(request.getParameter("BirthDate"));
         realCustomer.setNationalId(request.getParameter("NationalId"));
 
-//        boolean result = dao.addRealCustomer(realCustomer);
-//        if (result){
-//            response.sendRedirect();
-//        }else {
-//            response.sendRedirect();
-//        }
+        boolean result = dao.addRealCustomer(realCustomer);
+        if (result){
+            response.sendRedirect("addRealCustomer.html");
+        }else {
+            response.sendRedirect("addRealCustomer.html");
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
