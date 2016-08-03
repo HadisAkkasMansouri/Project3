@@ -1,6 +1,5 @@
-package ir.dotin.dataAccess;
+package ir.dotin.dataaccess;
 
-import ir.dotin.entities.RealCustomer;
 import ir.dotin.utility.SingleConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

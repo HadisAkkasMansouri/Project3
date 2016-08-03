@@ -1,6 +1,7 @@
-package ir.dotin.entities;
+package ir.dotin.dataaccess;
 
 public abstract class Customer {
+
 
     private String customerId;
 
