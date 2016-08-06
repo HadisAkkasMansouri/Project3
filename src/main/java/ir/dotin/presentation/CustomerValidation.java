@@ -28,7 +28,7 @@ public class CustomerValidation {
         }
 
         if(nationalId.length() < 10 || nationalId.length() > 10){
-            throw new FormatException("وارد نمودن کد ملی اجباری است");
+            throw new FormatException("فرمت کد ملی صحیح نمی باشد");
         }
     }
 
