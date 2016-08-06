@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AddLegalCustomerServlet extends HttpServlet{
 
@@ -19,13 +20,8 @@ public class AddLegalCustomerServlet extends HttpServlet{
         legalCustomer.setCompanyName(request.getParameter("CompaneyName"));
         legalCustomer.setEconomicId(request.getParameter("EconomicId"));
         legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
+        response.setContentType("text/html;charset=UTF-8");
 
-        boolean result = dao.addLegalCustomer(legalCustomer);
-        if (result){
-            response.sendRedirect("addLegalCustomer.html");
-        }else {
-            response.sendRedirect("addLegalCustomer.html");
-        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -33,6 +29,17 @@ public class AddLegalCustomerServlet extends HttpServlet{
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        PrintWriter result = response.getWriter();
+        result.println("<!DOCTYPE html>");
+        result.println("<html><head>");
+        result.println("<content='text/html; charset=UTF-8'>");
+        result.println("<title>generatedLegalCustomer</title></head>");
+        result.println("<body>");
+        result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
+        String companeyName = request.getParameter("CompaneyName");
+        String economicId = request.getParameter("EconomicId");
+        String registrationDate = request.getParameter("RegistrationDate");
         addLegalCustomerRequest(request, response);
     }
 }
