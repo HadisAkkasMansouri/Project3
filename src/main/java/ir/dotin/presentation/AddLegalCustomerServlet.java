@@ -1,34 +1,40 @@
 package ir.dotin.presentation;
 
+import com.sun.media.jfxmedia.track.Track;
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDao;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 
 public class AddLegalCustomerServlet extends HttpServlet{
 
-    LegalCustomer legalCustomer = new LegalCustomer();
-    LegalCustomerDao dao = new LegalCustomerDao();
+//    LegalCustomer legalCustomer = new LegalCustomer();
+//    LegalCustomerDao dao = new LegalCustomerDao();
 
-    protected void addLegalCustomerRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        legalCustomer.setCompanyName(request.getParameter("CompaneyName"));
-        legalCustomer.setEconomicId(request.getParameter("EconomicId"));
-        legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
+//    protected void addLegalCustomerRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//        legalCustomer.setCompanyName(request.getParameter("CompaneyName"));
+//        legalCustomer.setEconomicId(request.getParameter("EconomicId"));
+//        legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
+//        response.setContentType("text/html;charset=UTF-8");
+//
+//    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        addLegalCustomerRequest(request, response);
+//        addLegalCustomerRequest(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         PrintWriter result = response.getWriter();
         result.println("<!DOCTYPE html>");
@@ -40,6 +46,17 @@ public class AddLegalCustomerServlet extends HttpServlet{
         String companeyName = request.getParameter("CompaneyName");
         String economicId = request.getParameter("EconomicId");
         String registrationDate = request.getParameter("RegistrationDate");
-        addLegalCustomerRequest(request, response);
+        result.println(companeyName);
+        result.println(economicId);
+        result.println(registrationDate);
+
+
+
+//
+//        String companeyName = request.getParameter("CompaneyName");
+//        String economicId = request.getParameter("EconomicId");
+//        String registrationDate = request.getParameter("RegistrationDate");
+//
+//        addLegalCustomerRequest(request, response);
     }
 }
