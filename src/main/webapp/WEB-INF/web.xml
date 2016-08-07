@@ -8,14 +8,14 @@
         <servlet-name>legalCustomerServlet</servlet-name>
         <servlet-class>ir.dotin.presentation.AddLegalCustomerServlet</servlet-class>
     </servlet>
-    <!--<servlet>-->
-        <!--<servlet-name>addRealCustomerServlet</servlet-name>-->
-        <!--<servlet-class>ir.dotin.presentation.AddRealCustomerServlet</servlet-class>-->
-    <!--</servlet>-->
     <servlet>
         <servlet-name>realCustomerServlet</servlet-name>
-        <servlet-class>ir.dotin.presentation.DeleteRealCustomerServlet</servlet-class>
+        <servlet-class>ir.dotin.presentation.AddRealCustomerServlet</servlet-class>
     </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>realCustomerServlet</servlet-name>-->
+        <!--<servlet-class>ir.dotin.presentation.DeleteRealCustomerServlet</servlet-class>-->
+    <!--</servlet>-->
     <servlet-mapping>
         <servlet-name>legalCustomerServlet</servlet-name>
         <url-pattern>/AddLegalCustomer</url-pattern>
