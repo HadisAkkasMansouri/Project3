@@ -1,21 +1,26 @@
 package ir.dotin.presentation;
 
+import ir.dotin.dataaccess.LegalCustomerDao;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 
-public class AddLegalCustomerServlet extends HttpServlet{
+public class AddLegalCustomerServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        addLegalCustomerRequest(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        LegalCustomerDao legalCustomerDao = new LegalCustomerDao();
 
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -24,16 +29,18 @@ public class AddLegalCustomerServlet extends HttpServlet{
         String economicId = request.getParameter("EconomicId");
         String registrationDate = request.getParameter("RegistrationDate");
         try {
-            if(CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate)){
-            result.println("<!DOCTYPE html>");
-            result.println("<html><head>");
-            result.println("<content='text/html; charset=UTF-8'>");
-            result.println("<title>generatedLegalCustomer</title></head>");
-            result.println("<body>");
-            result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
-            result.println(companeyName);
-            result.println(economicId);
-            result.println(registrationDate);
+            if (CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate)) {
+                String realCustumerId = UUID.randomUUID().toString();
+                legalCustomerDao.addLegalCustomer(companeyName, economicId, registrationDate, realCustumerId);
+                result.println("<!DOCTYPE html>");
+                result.println("<html><head>");
+                result.println("<content='text/html; charset=UTF-8'>");
+                result.println("<title>generatedLegalCustomer</title></head>");
+                result.println("<body>");
+                result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
+                result.println(companeyName);
+                result.println(economicId);
+                result.println(registrationDate);
             }
         } catch (NullRequiredFieldException e) {
             result.println(e.getMessage());
