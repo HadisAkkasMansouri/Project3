@@ -1,6 +1,5 @@
-package ir.dotin.dataAccess;
+package ir.dotin.dataaccess;
 
-import ir.dotin.entities.LegalCustomer;
 import ir.dotin.utility.SingleConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,15 +24,15 @@ public class LegalCustomerDao {
 
     LegalCustomer legalCustomer = null;
 
-    public boolean addLegalCustomer(LegalCustomer legalCustomer) {
+    public boolean addLegalCustomer(String companyName, String economicId, String registrationDate, String legalCustomerId) {
 
         try {
-            String query = "insert into legal_customer(COMANEY_NAME, ECONOMIC_ID, REGISTRATION_DATE, LEGAL_CUSTOMER_ID) values();";
+            String query = "insert into legal_customer(COMANEY_NAME, ECONOMIC_ID, REGISTRATION_DATE, CUSTOMER_ID) values(?, ?, ?, ?);";
             System.out.println(query);
-            preparedStatement.setString(1, legalCustomer.getCompanyName());
-            preparedStatement.setString(2, legalCustomer.getEconomicId());
-            preparedStatement.setString(3, legalCustomer.getRegistrationDate());
-            preparedStatement.setString(4, legalCustomer.getLegalCustomerId());
+            preparedStatement.setString(1, companyName);
+            preparedStatement.setString(2, economicId);
+            preparedStatement.setString(3, registrationDate);
+            preparedStatement.setString(4, legalCustomerId);
             preparedStatement.executeUpdate();
             connection.commit();
 
@@ -76,7 +75,7 @@ public class LegalCustomerDao {
 
         List<LegalCustomer> legalCustomerList = new ArrayList<LegalCustomer>();
         try {
-            String query = "select * from LEGAL_CUSTOMER where COMANEY_NAME = ? and ECONOMIC_ID = ?  and LEGAL_CUSTOMER_ID = ?;";
+            String query = "select * from LEGAL_CUSTOMER where COMANEY_NAME = ? and ECONOMIC_ID = ?  and CUSTOMER_ID = ?;";
             System.out.println(query);
             preparedStatement.setString(1, companyName);
             preparedStatement.setString(2, economicId);
@@ -88,7 +87,7 @@ public class LegalCustomerDao {
                 legalCustomer.setCompanyName(executeQuery.getString(1));
                 legalCustomer.setEconomicId(executeQuery.getString(2));
                 legalCustomer.setRegistrationDate(executeQuery.getString(3));
-                legalCustomer.setLegalCustomerId(executeQuery.getString(3));
+                legalCustomer.setCustomerId(executeQuery.getString(4));
                 legalCustomerList.add(legalCustomer);
 
             }
@@ -104,34 +103,5 @@ public class LegalCustomerDao {
             }
         }
         return legalCustomerList;
-    }
-
-    public LegalCustomer searchLegalCustomerWithEI(String legalCustomerId) {
-
-        try {
-            String query = "select * from LEGAL_CUSTOMER where LEGAL_CUSTOMER_ID = ?";
-            System.out.println(query);
-            preparedStatement.setString(1, legalCustomerId);
-            ResultSet executeQuery = preparedStatement.executeQuery();
-
-            while (executeQuery.next()) {
-                legalCustomer = new LegalCustomer();
-                legalCustomer.setCompanyName(executeQuery.getString(1));
-                legalCustomer.setRegistrationDate(executeQuery.getString(2));
-                legalCustomer.setEconomicId(executeQuery.getString(3));
-                legalCustomer.setLegalCustomerId(executeQuery.getString(4));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return legalCustomer;
     }
 }
