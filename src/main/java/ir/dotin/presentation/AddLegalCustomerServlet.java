@@ -3,6 +3,8 @@ package ir.dotin.presentation;
 import com.sun.media.jfxmedia.track.Track;
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDao;
+import ir.dotin.exception.FormatException;
+import ir.dotin.exception.NullRequiredFieldException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -49,7 +51,13 @@ public class AddLegalCustomerServlet extends HttpServlet{
         result.println(companeyName);
         result.println(economicId);
         result.println(registrationDate);
-
+        try {
+            CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate);
+        } catch (NullRequiredFieldException e) {
+            e.printStackTrace();
+        } catch (FormatException e) {
+            e.printStackTrace();
+        }
 
 
 //
