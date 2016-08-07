@@ -19,7 +19,6 @@ public class AddLegalCustomerServlet extends HttpServlet{
 
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-
         PrintWriter result = response.getWriter();
         String companeyName = request.getParameter("CompaneyName");
         String economicId = request.getParameter("EconomicId");

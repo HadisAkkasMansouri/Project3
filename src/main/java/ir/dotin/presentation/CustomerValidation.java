@@ -5,7 +5,7 @@ import ir.dotin.exception.NullRequiredFieldException;
 
 public class CustomerValidation {
 
-    public static void validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
+    public static boolean validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
 
         if(name.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن فیلد نام اجباری است");
@@ -30,6 +30,7 @@ public class CustomerValidation {
         if(nationalId.length() < 10 || nationalId.length() > 10){
             throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
         }
+        return true;
     }
 
 
