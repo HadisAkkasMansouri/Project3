@@ -21,23 +21,26 @@ public class AddLegalCustomerServlet extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter result = response.getWriter();
-        result.println("<!DOCTYPE html>");
-        result.println("<html><head>");
-        result.println("<content='text/html; charset=UTF-8'>");
-        result.println("<title>generatedLegalCustomer</title></head>");
-        result.println("<body>");
-        result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
         String companeyName = request.getParameter("CompaneyName");
         String economicId = request.getParameter("EconomicId");
         String registrationDate = request.getParameter("RegistrationDate");
-        result.println(companeyName);
-        result.println(economicId);
-        result.println(registrationDate);
         try {
-            CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate);
+            if(CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate)){
+            result.println("<!DOCTYPE html>");
+            result.println("<html><head>");
+            result.println("<content='text/html; charset=UTF-8'>");
+            result.println("<title>generatedLegalCustomer</title></head>");
+            result.println("<body>");
+            result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
+            result.println(companeyName);
+            result.println(economicId);
+            result.println(registrationDate);
+            }
         } catch (NullRequiredFieldException e) {
+            result.println(e.getMessage());
             e.printStackTrace();
         } catch (InvalidFormatException e) {
+            result.println(e.getMessage());
             e.printStackTrace();
         }
     }

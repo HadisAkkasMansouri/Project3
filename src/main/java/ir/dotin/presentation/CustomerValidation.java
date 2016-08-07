@@ -33,7 +33,7 @@ public class CustomerValidation {
     }
 
 
-    public static void validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
+    public static boolean validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
 
         if(companeyName.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن نام شرکت اجباری است");
@@ -47,8 +47,9 @@ public class CustomerValidation {
             throw new NullRequiredFieldException("وارد نمودن تاریخ ثبت شرکت اجباری است");
         }
 
-        if(registrationDate.length() < 10 || registrationDate.length() > 10){
-            throw new InvalidFormatException("فرمت تاریخ ثبت شرکت صحیح نمی باشد");
+        if(((economicId.length()) < 10) || ((economicId.length()) > 10)){
+            throw new InvalidFormatException("فرمت کد اقتصادی شرکت صحیح نمی باشد");
         }
+        return true;
     }
 }
