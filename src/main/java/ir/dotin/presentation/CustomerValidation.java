@@ -1,11 +1,11 @@
 package ir.dotin.presentation;
 
-import ir.dotin.exception.FormatException;
+import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
 
 public class CustomerValidation {
 
-    public static void validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, FormatException {
+    public static void validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
 
         if(name.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن فیلد نام اجباری است");
@@ -28,12 +28,12 @@ public class CustomerValidation {
         }
 
         if(nationalId.length() < 10 || nationalId.length() > 10){
-            throw new FormatException("فرمت کد ملی صحیح نمی باشد");
+            throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
         }
     }
 
 
-    public static void validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, FormatException {
+    public static void validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
 
         if(companeyName.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن نام شرکت اجباری است");
@@ -48,7 +48,7 @@ public class CustomerValidation {
         }
 
         if(registrationDate.length() < 10 || registrationDate.length() > 10){
-            throw new FormatException("فرمت تاریخ ثبت شرکت صحیح نمی باشد");
+            throw new InvalidFormatException("فرمت تاریخ ثبت شرکت صحیح نمی باشد");
         }
     }
 }

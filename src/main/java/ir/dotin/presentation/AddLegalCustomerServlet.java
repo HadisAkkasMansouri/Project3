@@ -1,33 +1,15 @@
 package ir.dotin.presentation;
 
-import com.sun.media.jfxmedia.track.Track;
-import ir.dotin.dataaccess.LegalCustomer;
-import ir.dotin.dataaccess.LegalCustomerDao;
-import ir.dotin.exception.FormatException;
+import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
-
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 
 public class AddLegalCustomerServlet extends HttpServlet{
-
-//    LegalCustomer legalCustomer = new LegalCustomer();
-//    LegalCustomerDao dao = new LegalCustomerDao();
-
-//    protected void addLegalCustomerRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        legalCustomer.setCompanyName(request.getParameter("CompaneyName"));
-//        legalCustomer.setEconomicId(request.getParameter("EconomicId"));
-//        legalCustomer.setRegistrationDate(request.getParameter("RegistrationDate"));
-//        response.setContentType("text/html;charset=UTF-8");
-//
-//    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 //        addLegalCustomerRequest(request, response);
@@ -55,16 +37,8 @@ public class AddLegalCustomerServlet extends HttpServlet{
             CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate);
         } catch (NullRequiredFieldException e) {
             e.printStackTrace();
-        } catch (FormatException e) {
+        } catch (InvalidFormatException e) {
             e.printStackTrace();
         }
-
-
-//
-//        String companeyName = request.getParameter("CompaneyName");
-//        String economicId = request.getParameter("EconomicId");
-//        String registrationDate = request.getParameter("RegistrationDate");
-//
-//        addLegalCustomerRequest(request, response);
     }
 }
