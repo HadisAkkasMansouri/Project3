@@ -25,20 +25,20 @@ public class AddLegalCustomerServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
-        String companeyName = request.getParameter("CompaneyName");
+        String companyName = request.getParameter("CompaneyName");
         String economicId = request.getParameter("EconomicId");
         String registrationDate = request.getParameter("RegistrationDate");
         try {
-            if (CustomerValidation.validateLegalCustomer(companeyName, economicId, registrationDate)) {
-                String realCustumerId = UUID.randomUUID().toString();
-                legalCustomerDao.addLegalCustomer(companeyName, economicId, registrationDate, realCustumerId);
+            if (CustomerValidation.validateLegalCustomer(companyName, economicId, registrationDate)) {
+                String realCustumerId = String.valueOf((System.currentTimeMillis() % 1000));
+                legalCustomerDao.addLegalCustomer(companyName, economicId, registrationDate, realCustumerId);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
                 result.println("<content='text/html; charset=UTF-8'>");
                 result.println("<title>generatedLegalCustomer</title></head>");
                 result.println("<body>");
                 result.println("<h1>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
-                result.println(companeyName);
+                result.println(companyName);
                 result.println(economicId);
                 result.println(registrationDate);
             }
