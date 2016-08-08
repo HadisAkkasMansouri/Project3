@@ -16,7 +16,9 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
