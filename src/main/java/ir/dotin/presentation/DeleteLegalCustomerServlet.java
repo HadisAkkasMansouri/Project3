@@ -21,7 +21,7 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String legalCustomerId = request.getParameter("LegalCustomerId");
-        if(legalCustomerDAO.checkLegalCustomerId(legalCustomerId)){
+        if (legalCustomerDAO.checkLegalCustomerId(legalCustomerId)) {
             legalCustomerDAO.deleteLegalCustomer(legalCustomerId);
             result.println("<!DOCTYPE html>");
             result.println("<html><head>");

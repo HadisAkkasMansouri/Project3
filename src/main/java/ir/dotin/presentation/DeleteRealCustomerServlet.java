@@ -1,6 +1,7 @@
 package ir.dotin.presentation;
 
 import ir.dotin.dataaccess.RealCustomerDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class DeleteRealCustomerServlet extends HttpServlet{
+public class DeleteRealCustomerServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        addRealCustomerRequest(request, response);
@@ -20,7 +21,7 @@ public class DeleteRealCustomerServlet extends HttpServlet{
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String realCustomerId = request.getParameter("RealCustomerId");
-        if(realCustomerDAO.checkRealCustomerId(realCustomerId)){
+        if (realCustomerDAO.checkRealCustomerId(realCustomerId)) {
             realCustomerDAO.deleteRealCustomer(realCustomerId);
             result.println("<!DOCTYPE html>");
             result.println("<html><head>");

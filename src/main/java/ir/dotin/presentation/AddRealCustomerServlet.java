@@ -25,10 +25,10 @@ public class AddRealCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String name = request.getParameter("Name");
-        String familyName = new String(request.getParameter("FamilyName").getBytes(),"UTF-8");
-        String fatherName = new String(request.getParameter("FatherName").getBytes(),"UTF-8");
-        String birthDate = new String(request.getParameter("BirthDate").getBytes(),"UTF-8");
-        String nationalId = new String(request.getParameter("NationalId").getBytes(),"UTF-8");
+        String familyName = request.getParameter("FamilyName");
+        String fatherName = request.getParameter("FatherName");
+        String birthDate = request.getParameter("BirthDate");
+        String nationalId = request.getParameter("NationalId");
         try {
             if(CustomerValidation.validateRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
                 realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);

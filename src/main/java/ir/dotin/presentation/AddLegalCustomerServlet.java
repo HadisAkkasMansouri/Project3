@@ -4,6 +4,7 @@ import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +26,8 @@ public class AddLegalCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String companyName = request.getParameter("CompaneyName");
-        String economicId = new String(request.getParameter("EconomicId").getBytes(),"UTF-8");
-        String registrationDate = new String(request.getParameter("RegistrationDate").getBytes(),"UTF-8");
+        String economicId = new String(request.getParameter("EconomicId").getBytes(), "UTF-8");
+        String registrationDate = new String(request.getParameter("RegistrationDate").getBytes(), "UTF-8");
         try {
             if (CustomerValidation.validateLegalCustomer(companyName, economicId, registrationDate)) {
                 legalCustomerDAO.addLegalCustomer(companyName, economicId, registrationDate);
