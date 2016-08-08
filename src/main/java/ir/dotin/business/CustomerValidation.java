@@ -1,4 +1,4 @@
-package ir.dotin.presentation;
+package ir.dotin.business;
 
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
@@ -35,7 +35,6 @@ public class CustomerValidation {
 
 
     public static boolean validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
-
         if(companeyName.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن نام شرکت اجباری است");
         }
