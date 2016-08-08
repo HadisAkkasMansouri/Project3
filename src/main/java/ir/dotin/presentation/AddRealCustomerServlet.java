@@ -31,12 +31,13 @@ public class AddRealCustomerServlet extends HttpServlet {
         String nationalId = new String(request.getParameter("NationalId").getBytes(),"UTF-8");
         try {
             if(CustomerValidation.validateRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
-
+                realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
                 result.println("<content='text/html; charset=UTF-8'>");
                 result.println("<title>generatedLegalCustomer</title></head>");
                 result.println("<body>");
+                result.println("<body style='background-color:#000000;'>");
                 result.println("\"<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی با موفقیت ‌ذخیره شد</h1>");
                 result.println("<font color='#fff8dc'>" + name);
                 result.println(familyName);
