@@ -1,9 +1,15 @@
 package ir.dotin.business;
 
+import ir.dotin.dataaccess.LegalCustomerDAO;
+import ir.dotin.dataaccess.RealCustomerDAO;
+import ir.dotin.exception.InvalidEnteranceException;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
 
 public class CustomerValidation {
+
+    LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+    RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
 
     public static boolean validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
 
@@ -51,5 +57,25 @@ public class CustomerValidation {
             throw new InvalidFormatException("فرمت کد اقتصادی شرکت صحیح نمی باشد");
         }
         return true;
+    }
+
+    public boolean validateRealCustomerId(String realCustomerId) throws InvalidEnteranceException{
+
+        if (realCustomerDAO.checkRealCustomerId(realCustomerId)){
+            //todo delete realCustomerId
+            return true;
+        }else{
+            throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
+        }
+    }
+
+    public boolean validateLegalCustomerId(String legalCustomerId) throws InvalidEnteranceException{
+
+        if (legalCustomerDAO.checkLegalCustomerId(legalCustomerId)){
+            //todo delete legalCustomerId
+            return true;
+        }else{
+            throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
+        }
     }
 }
