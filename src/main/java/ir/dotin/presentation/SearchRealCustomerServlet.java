@@ -1,6 +1,7 @@
 package ir.dotin.presentation;
 
 import ir.dotin.business.CustomerValidation;
+import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class SearchRealCustomerServlet extends HttpServlet {
 
@@ -32,6 +34,7 @@ public class SearchRealCustomerServlet extends HttpServlet {
         try {
             if(CustomerValidation.validateSearchRealCustomer(name, familyName, realCustomerID, nationalId)){
                 realCustomerDAO.searchRealCustomer(name, familyName, realCustomerID, nationalId);
+//                PageGenerator.generateSearchOfLegalCustomerHTML(realCustomers);
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000;'>");
