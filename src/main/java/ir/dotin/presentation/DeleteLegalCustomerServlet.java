@@ -1,6 +1,8 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomerDAO;
+import ir.dotin.exception.InvalidEnteranceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,26 +25,22 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String legalCustomerId = request.getParameter("LegalCustomerId");
-        if (legalCustomerDAO.checkLegalCustomerId(legalCustomerId)) {
-            legalCustomerDAO.deleteLegalCustomer(legalCustomerId);
-            result.println("<!DOCTYPE html>");
-            result.println("<html><head>");
-            result.println("<content='text/html; charset=UTF-8'>");
-            result.println("<title>generatedLegalCustomer</title></head>");
+        try {
+            if (CustomerValidation.validateDeleteLegalCustomerId(legalCustomerId)) {
+                legalCustomerDAO.deleteLegalCustomer(legalCustomerId);
+                result.println("<!DOCTYPE html>");
+                result.println("<html><head>");
+                result.println("<content='text/html; charset=UTF-8'>");
+                result.println("<title>generatedLegalCustomer</title></head>");
+                result.println("<body style='background-color:#000000;'>");
+                result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد</h1>");
+                result.println("</font></body>");
+                result.println("</html>");
+            }
+        } catch (InvalidEnteranceException e) {
             result.println("<body style='background-color:#000000;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد</h1>");
-            result.println("</font></body>");
-            result.println("</html>");
-        }
-        else {
-            result.println("<!DOCTYPE html>");
-            result.println("<html><head>");
-            result.println("<content='text/html; charset=UTF-8'>");
-            result.println("<title>generatedLegalCustomer</title></head>");
-            result.println("<body style='background-color:#000000;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>شماره مشتری حقوقی وارد شده صحیح نمی باشد لطفا مجددا تلاش کنید</h1>");
-            result.println("</font></body>");
-            result.println("</html>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
         }
     }
 }

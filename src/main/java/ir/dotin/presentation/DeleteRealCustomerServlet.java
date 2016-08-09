@@ -1,11 +1,14 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.RealCustomerDAO;
+import ir.dotin.exception.InvalidEnteranceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.tagext.ValidationMessage;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,26 +26,22 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String realCustomerId = request.getParameter("RealCustomerId");
-        if (realCustomerDAO.checkRealCustomerId(realCustomerId)) {
-            realCustomerDAO.deleteRealCustomer(realCustomerId);
-            result.println("<!DOCTYPE html>");
-            result.println("<html><head>");
-            result.println("<content='text/html; charset=UTF-8'>");
-            result.println("<title>generatedRealCustomer</title></head>");
+        try {
+            if (CustomerValidation.validateDeleteRealCustomerId(realCustomerId)) {
+                realCustomerDAO.deleteRealCustomer(realCustomerId);
+                result.println("<!DOCTYPE html>");
+                result.println("<html><head>");
+                result.println("<content='text/html; charset=UTF-8'>");
+                result.println("<title>generatedRealCustomer</title></head>");
+                result.println("<body style='background-color:#000000;'>");
+                result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
+                result.println("</font></body>");
+                result.println("</html>");
+            }
+        } catch (InvalidEnteranceException e) {
             result.println("<body style='background-color:#000000;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
-            result.println("</font></body>");
-            result.println("</html>");
-        }
-        else {
-            result.println("<!DOCTYPE html>");
-            result.println("<html><head>");
-            result.println("<content='text/html; charset=UTF-8'>");
-            result.println("<title>generatedLegalCustomer</title></head>");
-            result.println("<body style='background-color:#000000;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>شماره مشتری حقیقی وارد شده صحیح نمی باشد لطفا مجددا تلاش کنید</h1>");
-            result.println("</font></body>");
-            result.println("</html>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
         }
     }
 }

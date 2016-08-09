@@ -30,7 +30,7 @@ public class AddRealCustomerServlet extends HttpServlet {
         String birthDate = request.getParameter("BirthDate");
         String nationalId = request.getParameter("NationalId");
         try {
-            if(CustomerValidation.validateRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
+            if(CustomerValidation.validateAddRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
                 realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
@@ -48,10 +48,12 @@ public class AddRealCustomerServlet extends HttpServlet {
                 result.println("</html>");
             }
         } catch (NullRequiredFieldException e) {
-            result.println(e.getMessage());
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         } catch (InvalidFormatException e) {
-            result.println(e.getMessage());
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
     }

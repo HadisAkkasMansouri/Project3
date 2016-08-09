@@ -27,10 +27,10 @@ public class AddLegalCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String companyName = request.getParameter("CompaneyName");
-        String economicId = new String(request.getParameter("EconomicId").getBytes(), "UTF-8");
-        String registrationDate = new String(request.getParameter("RegistrationDate").getBytes(), "UTF-8");
+        String economicId = request.getParameter("EconomicId");
+        String registrationDate = request.getParameter("RegistrationDate");
         try {
-            if (CustomerValidation.validateLegalCustomer(companyName, economicId, registrationDate)) {
+            if (CustomerValidation.validateAddLegalCustomer(companyName, economicId, registrationDate)) {
                 legalCustomerDAO.addLegalCustomer(companyName, economicId, registrationDate);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
@@ -45,10 +45,12 @@ public class AddLegalCustomerServlet extends HttpServlet {
                 result.println("</html>");
             }
         } catch (NullRequiredFieldException e) {
-            result.println(e.getMessage());
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         } catch (InvalidFormatException e) {
-            result.println(e.getMessage());
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
     }
