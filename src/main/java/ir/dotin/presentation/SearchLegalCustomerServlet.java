@@ -31,6 +31,7 @@ public class SearchLegalCustomerServlet extends HttpServlet{
         try {
             if(CustomerValidation.validateSearchLegalCustomer(companyName, economicId, legalCustomerId)){
                 legalCustomerDAO.searchLegalCustomer(companyName, economicId, legalCustomerId);
+
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000;'>");
