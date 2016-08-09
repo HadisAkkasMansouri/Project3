@@ -8,10 +8,8 @@ import ir.dotin.exception.NullRequiredFieldException;
 
 public class CustomerValidation {
 
-    LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
-    RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
 
-    public static boolean validateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
+    public static boolean validateAddRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
 
         if(name.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن فیلد نام اجباری است");
@@ -40,7 +38,7 @@ public class CustomerValidation {
     }
 
 
-    public static boolean validateLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
+    public static boolean validateAddLegalCustomer(String companeyName, String economicId, String registrationDate) throws NullRequiredFieldException, InvalidFormatException {
         if(companeyName.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن نام شرکت اجباری است");
         }
@@ -59,23 +57,64 @@ public class CustomerValidation {
         return true;
     }
 
-    public boolean validateRealCustomerId(String realCustomerId) throws InvalidEnteranceException{
+    public static boolean validateDeleteRealCustomerId(String realCustomerId) throws InvalidEnteranceException{
 
-        if (realCustomerDAO.checkRealCustomerId(realCustomerId)){
-            //todo delete realCustomerId
+        if (RealCustomerDAO.checkRealCustomerId(realCustomerId)){
             return true;
         }else{
             throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
         }
     }
 
-    public boolean validateLegalCustomerId(String legalCustomerId) throws InvalidEnteranceException{
+    public static boolean validateDeleteLegalCustomerId(String legalCustomerId) throws InvalidEnteranceException{
 
-        if (legalCustomerDAO.checkLegalCustomerId(legalCustomerId)){
-            //todo delete legalCustomerId
+        if (LegalCustomerDAO.checkLegalCustomerId(legalCustomerId)){
             return true;
         }else{
             throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
         }
+    }
+
+    public static boolean validateSearchRealCustomer(String name, String familyName, String nationalId, String realCustomerId) throws NullRequiredFieldException, InvalidFormatException {
+
+        if(name.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن فیلد نام اجباری است");
+        }
+
+        if(familyName.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن نام خانوادگی اجباری است");
+        }
+
+        if(nationalId.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن نام کد ملی است");
+        }
+
+        if(realCustomerId.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن شماره مشتری حقیقی اجباری است");
+        }
+
+        if(nationalId.length() < 10 || nationalId.length() > 10){
+            throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
+        }
+        return true;
+    }
+
+    public static boolean validateSearchLegalCustomer(String companeyName, String economicId, String legalCustomerId) throws NullRequiredFieldException, InvalidFormatException {
+        if(companeyName.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن نام شرکت اجباری است");
+        }
+
+        if(economicId.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن کد اقتصادی شرکت اجباری است");
+        }
+
+        if(legalCustomerId.isEmpty()){
+            throw new NullRequiredFieldException("وارد نمودن شماره مشتری حقوقی اجباری است");
+        }
+
+        if(((economicId.length()) < 10) || ((economicId.length()) > 10)){
+            throw new InvalidFormatException("فرمت کد اقتصادی شرکت صحیح نمی باشد");
+        }
+        return true;
     }
 }
