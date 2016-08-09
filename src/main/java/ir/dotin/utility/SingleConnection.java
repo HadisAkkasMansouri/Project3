@@ -12,7 +12,7 @@ public class SingleConnection {
     private SingleConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/dotin?user=root&password=root");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/dotin?useUnicode=true&characterEncoding=UTF-8" , "root" , "root");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }catch (SQLException e) {
