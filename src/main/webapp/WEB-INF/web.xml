@@ -28,13 +28,21 @@
         <servlet-name>UpdateRealCustomerServlet</servlet-name>
         <servlet-class>ir.dotin.presentation.UpdateRealCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchRealCustomerServlet</servlet-name>
+        <servlet-class>ir.dotin.presentation.SearchRealCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchLegalCustomerServlet</servlet-name>
+        <servlet-class>ir.dotin.presentation.SearchLegalCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddLegalCustomerServlet</servlet-name>
-        <url-pattern>/AddLegalCustomer</url-pattern>
+        <url-pattern>/AddLegalCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddRealCustomerServlet</servlet-name>
-        <url-pattern>/AddRealCustomer</url-pattern>
+        <url-pattern>/AddRealCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteRealCustomerServlet</servlet-name>
@@ -51,5 +59,13 @@
     <servlet-mapping>
         <servlet-name>UpdateRealCustomerServlet</servlet-name>
         <url-pattern>/UpdateRealCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchRealCustomerServlet</servlet-name>
+        <url-pattern>/SearchRealCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchLegalCustomerServlet</servlet-name>
+        <url-pattern>/SearchLegalCustomerServlet</url-pattern>
     </servlet-mapping>
 </web-app>
