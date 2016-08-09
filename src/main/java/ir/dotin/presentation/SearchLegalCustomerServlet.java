@@ -1,6 +1,9 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomerDAO;
+import ir.dotin.exception.InvalidFormatException;
+import ir.dotin.exception.NullRequiredFieldException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +28,19 @@ public class SearchLegalCustomerServlet extends HttpServlet{
         String companyName = request.getParameter("CompaneyName");
         String economicId = request.getParameter("EconomicId");
         String legalCustomerId = request.getParameter("LegalCustomerId");
-
+        try {
+            if(CustomerValidation.validateSearchLegalCustomer(companyName, economicId, legalCustomerId)){
+                legalCustomerDAO.searchLegalCustomer(companyName, economicId, legalCustomerId);
+            }
+        } catch (NullRequiredFieldException e) {
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
+        }
 
     }
 }

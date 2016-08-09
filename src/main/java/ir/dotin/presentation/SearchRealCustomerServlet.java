@@ -1,6 +1,9 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.RealCustomerDAO;
+import ir.dotin.exception.InvalidFormatException;
+import ir.dotin.exception.NullRequiredFieldException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +29,19 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String familyName = request.getParameter("FamilyName");
         String realCustomerID = request.getParameter("RealCustomerId");
         String nationalId = request.getParameter("NationalId");
+        try {
+            if(CustomerValidation.validateSearchRealCustomer(name, familyName, realCustomerID, nationalId)){
+                realCustomerDAO.searchRealCustomer(name, familyName, realCustomerID, nationalId);
+            }
+        } catch (NullRequiredFieldException e) {
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
+        }
 
     }
 }
