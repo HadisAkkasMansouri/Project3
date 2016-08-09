@@ -1,6 +1,7 @@
 package ir.dotin.dataaccess;
 
 import ir.dotin.utility.SingleConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,46 +9,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RealCustomerDao {
+public class RealCustomerDAO {
 
     Connection connection = null;
-    PreparedStatement preparedStatement;
 
-    public RealCustomerDao() {
+    public RealCustomerDAO() {
         connection = SingleConnection.getConnection();
-        try {
-            connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     RealCustomer realCustomer = null;
 
-    public boolean addRealCustomer(RealCustomer realCustomer) {
+    public boolean addRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalId) {
 
+        PreparedStatement preparedStatement = null;
+        int customerId = 0;
         try {
-            String query = "insert into REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, CUSTOMER_ID) values (?, ?, ?, ?, ?, ?);";
+            String maxId = "select max(customer_id) from real_customer;";
+            preparedStatement = connection.prepareStatement(maxId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                customerId = resultSet.getInt(1);
+            } else {
+                customerId = 10000;
+            }
+            customerId++;
+            String legalCustomerId = String.valueOf(customerId);
+            String query = "INSERT INTO REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, CUSTOMER_ID) values (?, ?, ?, ?, ?, ?);";
             System.out.println(query);
-            preparedStatement.setString(1, realCustomer.getName());
-            preparedStatement.setString(2, realCustomer.getFamilyName());
-            preparedStatement.setString(3, realCustomer.getFatherName());
-            preparedStatement.setString(4, realCustomer.getBirthDate());
-            preparedStatement.setString(5, realCustomer.getNationalId());
-            preparedStatement.setString(6, realCustomer.getCustomerId());
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, familyName);
+            preparedStatement.setString(3, fatherName);
+            preparedStatement.setString(4, birthDate);
+            preparedStatement.setString(5, nationalId);
+            preparedStatement.setString(6, legalCustomerId);
             preparedStatement.executeUpdate();
-            connection.commit();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return true;
     }
@@ -55,21 +54,13 @@ public class RealCustomerDao {
     public void deleteRealCustomer(String realCustomerId) {
 
         try {
-            String query = "delete REAL_CUSTOMER where CUSTOMER_ID = ?;";
+            String query = "DELETE FROM REAL_CUSTOMER WHERE CUSTOMER_ID = ?;";
             System.out.println(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, realCustomerId);
             preparedStatement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -77,8 +68,9 @@ public class RealCustomerDao {
 
         List<RealCustomer> customerList = new ArrayList<RealCustomer>();
         try {
-            String query = "select * from REAL_CUSTOMER where NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
+            String query = "SELECT * FROM REAL_CUSTOMER WHERE NAME = ? and FAMILY_NAME = ? and NATIONAL_ID = ? and REAL_CUSTOMER_ID = ?;";
             System.out.println(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, familyName);
             preparedStatement.setString(3, nationalId);
@@ -98,18 +90,24 @@ public class RealCustomerDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return customerList;
+    }
+
+    public boolean checkRealCustomerId(String realCustomerId) {
+        String query = "SELECT * FROM REAL_CUSTOMER WHERE CUSTOMER_ID = ?;";
+        System.out.println(query);
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, realCustomerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
