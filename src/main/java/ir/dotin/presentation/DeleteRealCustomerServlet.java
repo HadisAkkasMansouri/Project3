@@ -34,5 +34,15 @@ public class DeleteRealCustomerServlet extends HttpServlet {
             result.println("</font></body>");
             result.println("</html>");
         }
+        else {
+            result.println("<!DOCTYPE html>");
+            result.println("<html><head>");
+            result.println("<content='text/html; charset=UTF-8'>");
+            result.println("<title>generatedLegalCustomer</title></head>");
+            result.println("<body style='background-color:#000000;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>شماره مشتری حقیقی وارد شده صحیح نمی باشد لطفا مجددا تلاش کنید</h1>");
+            result.println("</font></body>");
+            result.println("</html>");
+        }
     }
 }
