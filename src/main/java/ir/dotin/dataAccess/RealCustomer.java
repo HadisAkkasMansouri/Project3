@@ -59,4 +59,16 @@ public class RealCustomer extends Customer {
         super.setCustomerId(customerId);
         this.customerId = customerId;
     }
+
+    @Override
+    public String toString() {
+        return "RealCustomer{" +
+                "name ='" + name + '\'' +
+                ", family ='" + familyName + '\'' +
+                ", fatherName ='" + fatherName + '\'' +
+                ", birthDate ='" + birthDate + '\'' +
+                ", nationalCode ='" + nationalId + '\'' +
+                ", realCustomerNumber ='" + customerId + '\'' +
+                '}';
+    }
 }

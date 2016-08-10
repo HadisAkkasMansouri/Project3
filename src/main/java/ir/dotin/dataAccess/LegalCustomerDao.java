@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LegalCustomerDAO {
 
-    Connection connection = null;
+    private static Connection connection = null;
 
     public LegalCustomerDAO() {
         connection = SingleConnection.getConnection();
@@ -60,33 +60,60 @@ public class LegalCustomerDAO {
         }
     }
 
-    public List<LegalCustomer> searchLegalCustomer(String companyName, String economicId, String legalCustomerId) {
+    public PreparedStatement searchLegalCustomerPreparedStatement(String companyName, String economicId, String legalCustomerId) {
 
-        List<LegalCustomer> legalCustomerList = new ArrayList<LegalCustomer>();
+        PreparedStatement preparedStatement = null;
+        int counter = 1;
+        StringBuilder query = new StringBuilder("SELECT * FROM LEGAL_CUSTOMER WHERE ");
+        List<String> parameters = new ArrayList<String>();
+        if ((legalCustomerId != null) && (!legalCustomerId.trim().equals(""))) {
+            query.append(" CUSTOMER_ID = ? AND ");
+            parameters.add(legalCustomerId);
+        }
+
+        if ((companyName != null) && (!companyName.trim().equals(""))) {
+            query.append(" COMPANY_NAME = ? AND ");
+            parameters.add(companyName);
+        }
+
+        if ((economicId != null) && (!economicId.trim().equals(""))) {
+            query.append(" ECONOMIC_ID = ? AND ");
+            parameters.add(economicId);
+        }
+        query.append(" true ");
         try {
-            String query = "select * from LEGAL_CUSTOMER where COMANEY_NAME = ? and ECONOMIC_ID = ?  and CUSTOMER_ID = ?;";
-            System.out.println(query);
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, companyName);
-            preparedStatement.setString(2, economicId);
-            preparedStatement.setString(3, legalCustomerId);
-            ResultSet executeQuery = preparedStatement.executeQuery();
-
-            while (executeQuery.next()) {
-                LegalCustomer legalCustomer = new LegalCustomer();
-                legalCustomer.setCompanyName(executeQuery.getString(1));
-                legalCustomer.setEconomicId(executeQuery.getString(2));
-                legalCustomer.setRegistrationDate(executeQuery.getString(3));
-                legalCustomer.setCustomerId(executeQuery.getString(4));
-                legalCustomerList.add(legalCustomer);
+            preparedStatement = connection.prepareStatement(query.toString());
+            for (String parameter : parameters) {
+                preparedStatement.setString(counter, parameter);
+                counter++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return legalCustomerList;
+        return preparedStatement;
     }
 
-    public boolean checkLegalCustomerId(String legalCustomerId) {
+    public ArrayList<LegalCustomer> searchLegalCustomer(String companyName, String economicId, String legalCustomerId) {
+        ArrayList<LegalCustomer> legalCustomers = new ArrayList<LegalCustomer>();
+        try {
+            PreparedStatement preparedStatement = searchLegalCustomerPreparedStatement(companyName, economicId, legalCustomerId);
+            ResultSet results = preparedStatement.executeQuery();
+            while (results.next()) {
+                LegalCustomer legalCustomer = new LegalCustomer();
+                legalCustomer.setId(results.getInt("ID"));
+                legalCustomer.setCompanyName(results.getString("COMPANY_NAME"));
+                legalCustomer.setEconomicId(results.getString("ECONOMIC_ID"));
+                legalCustomer.setRegistrationDate(results.getString("REGISTRATION_DATE"));
+                legalCustomer.setCustomerId(results.getString("CUSTOMER_ID"));
+                legalCustomers.add(legalCustomer);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return legalCustomers;
+    }
+
+    public static boolean checkLegalCustomerId(String legalCustomerId) {
         String query = "select * from LEGAL_CUSTOMER where CUSTOMER_ID = ?;";
         System.out.println(query);
         try {

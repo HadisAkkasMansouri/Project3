@@ -41,4 +41,14 @@ public class LegalCustomer extends Customer {
         super.setCustomerId(customerId);
         this.customerId = customerId;
     }
+
+    @Override
+    public String toString() {
+        return "RealCustomer{" +
+                "name ='" + companyName + '\'' +
+                ", registrationDate ='" + registrationDate + '\'' +
+                ", economicId ='" + economicId + '\'' +
+                ", customerId ='" + customerId + '\'' +
+                '}';
+    }
 }
