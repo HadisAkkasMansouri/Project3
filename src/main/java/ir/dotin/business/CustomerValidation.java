@@ -31,7 +31,7 @@ public class CustomerValidation {
             throw new NullRequiredFieldException("وارد نمودن کد ملی اجباری است");
         }
 
-        if(nationalId.length() < 10 || nationalId.length() > 10){
+        if(nationalId.length() !=  10){
             throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
         }
         return true;
@@ -75,7 +75,7 @@ public class CustomerValidation {
         }
     }
 
-    public static boolean validateSearchRealCustomer(String name, String familyName, String nationalId, String realCustomerId) throws NullRequiredFieldException, InvalidFormatException {
+    public static boolean validateSearchRealCustomer(String name, String familyName, String realCustomerId, String nationalId) throws NullRequiredFieldException, InvalidFormatException {
 
         if(name.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن فیلد نام اجباری است");
@@ -86,14 +86,14 @@ public class CustomerValidation {
         }
 
         if(nationalId.isEmpty()){
-            throw new NullRequiredFieldException("وارد نمودن نام کد ملی است");
+            throw new NullRequiredFieldException("وارد نمودن کد ملی اجباری است");
         }
 
         if(realCustomerId.isEmpty()){
             throw new NullRequiredFieldException("وارد نمودن شماره مشتری حقیقی اجباری است");
         }
 
-        if(nationalId.length() < 10 || nationalId.length() > 10){
+        if(nationalId.length() != 10){
             throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
         }
         return true;
@@ -112,7 +112,7 @@ public class CustomerValidation {
             throw new NullRequiredFieldException("وارد نمودن شماره مشتری حقوقی اجباری است");
         }
 
-        if(((economicId.length()) < 10) || ((economicId.length()) > 10)){
+        if(economicId.length()!= 10){
             throw new InvalidFormatException("فرمت کد اقتصادی شرکت صحیح نمی باشد");
         }
         return true;
