@@ -5,7 +5,6 @@ import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,20 +31,20 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String realCustomerID = request.getParameter("RealCustomerId");
         String nationalId = request.getParameter("NationalId");
         try {
-            if(CustomerValidation.validateSearchRealCustomer(name, familyName, realCustomerID, nationalId)){
-                realCustomerDAO.searchRealCustomer(name, familyName, realCustomerID, nationalId);
-//                PageGenerator.generateSearchOfLegalCustomerHTML(realCustomers);
+            if(/*CustomerValidation.validateNationalId(nationalId) && */(nationalId.isEmpty())){
+                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalId, realCustomerID);
+                response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
+
+            }else if (CustomerValidation.validateNationalId(nationalId)){
+                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalId, realCustomerID);
+                response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
             }
-        } catch (NullRequiredFieldException e) {
-            result.println("<body style='background-color:#000000;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
-            e.printStackTrace();
         } catch (InvalidFormatException e) {
             result.println("<body style='background-color:#000000;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
-
     }
+
 }
 
