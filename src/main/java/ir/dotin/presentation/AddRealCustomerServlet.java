@@ -14,10 +14,6 @@ import java.io.PrintWriter;
 
 public class AddRealCustomerServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//        addRealCustomerRequest(request, response);
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
@@ -34,20 +30,6 @@ public class AddRealCustomerServlet extends HttpServlet {
             if(CustomerValidation.validateAddRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
                 RealCustomer realCustomer = realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);
                 response.getWriter().println(PageGenerator.generateAddOfRealCustomerHTML(realCustomer));
-//                result.println("<!DOCTYPE html>");
-//                result.println("<html><head>");
-//                result.println("<content='text/html; charset=UTF-8'>");
-//                result.println("<title>generatedLegalCustomer</title></head>");
-//                result.println("<body>");
-//                result.println("<body style='background-color:#000000;'>");
-//                result.println("\"<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی با موفقیت ‌ذخیره شد</h1>");
-//                result.println("<font color='#fff8dc'>" + name);
-//                result.println(familyName);
-//                result.println(fatherName);
-//                result.println(birthDate);
-//                result.println(nationalId);
-//                result.println("</font></body>");
-//                result.println("</html>");
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000;'>");

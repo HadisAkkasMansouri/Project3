@@ -14,11 +14,6 @@ import java.io.PrintWriter;
 
 public class AddLegalCustomerServlet extends HttpServlet {
 
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        addLegalCustomerRequest(request, response);
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
