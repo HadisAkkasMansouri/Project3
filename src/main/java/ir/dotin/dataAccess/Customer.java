@@ -4,19 +4,19 @@ public abstract class Customer {
 
 
     private int id;
-    private String customerId;
+    private String customerNumber;
 
 
     public int getId() {
         return id;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerNumber(String customerId) {
+        this.customerNumber = customerId;
     }
 
     public void setId(int id) {
@@ -27,7 +27,7 @@ public abstract class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", customerNumber='" + customerId + '\'' +
+                ", customerNumber='" + customerNumber + '\'' +
                 '}';
     }
 }

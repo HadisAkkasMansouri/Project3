@@ -7,7 +7,7 @@ public class RealCustomer extends Customer {
     private String fatherName;
     private String birthDate;
     private String  nationalId;
-    private String customerId;
+    private String customerNumber;
 
     public String getName() {
         return name;
@@ -30,8 +30,8 @@ public class RealCustomer extends Customer {
     }
 
     @Override
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerNumber() {
+        return customerNumber;
     }
 
     public void setName(String name) {
@@ -54,10 +54,12 @@ public class RealCustomer extends Customer {
         this.nationalId = nationalId;
     }
 
+
+
     @Override
-    public void setCustomerId(String customerId) {
-        super.setCustomerId(customerId);
-        this.customerId = customerId;
+    public void setCustomerNumber(String customerNumber) {
+        super.setCustomerNumber(customerNumber);
+        this.customerNumber = customerNumber;
     }
 
     @Override
@@ -68,7 +70,7 @@ public class RealCustomer extends Customer {
                 ", fatherName ='" + fatherName + '\'' +
                 ", birthDate ='" + birthDate + '\'' +
                 ", nationalCode ='" + nationalId + '\'' +
-                ", realCustomerNumber ='" + customerId + '\'' +
+                ", realCustomerNumber ='" + customerNumber + '\'' +
                 '}';
     }
 }

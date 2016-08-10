@@ -19,11 +19,13 @@ public class LegalCustomerDAO {
 
     LegalCustomer legalCustomer = null;
 
-    public boolean addLegalCustomer(String companyName, String economicId, String registrationDate) {
+    public LegalCustomer addLegalCustomer(String companyName, String economicId, String registrationDate) {
+
+        LegalCustomer legalCustomer = new LegalCustomer();
         PreparedStatement preparedStatement = null;
         int customerId = 0;
         try {
-            String maxId = "select max(customer_id) from legal_customer;";
+            String maxId = "select max(customer_id) from customer;";
             preparedStatement = connection.prepareStatement(maxId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -33,19 +35,25 @@ public class LegalCustomerDAO {
             }
             customerId++;
             String legalCustomerId = String.valueOf(customerId);
-            String query = "insert into legal_customer(COMPANY_NAME, ECONOMIC_ID, REGISTRATION_DATE, CUSTOMER_ID) values(?, ?, ?, ?)";
+            Integer id =  CustomerDAO.addCustomer(customerId);
+            String query = "insert into legal_customer(COMPANY_NAME, ECONOMIC_ID, REGISTRATION_DATE, CUSTOMER_ID, ID) values(?, ?, ?, ?, ?)";
             System.out.println(query);
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, companyName);
             preparedStatement.setString(2, economicId);
             preparedStatement.setString(3, registrationDate);
             preparedStatement.setString(4, legalCustomerId);
+            preparedStatement.setInt(5, id);
             preparedStatement.executeUpdate();
+
+            legalCustomer.setCustomerNumber(id.toString());
+            legalCustomer.setEconomicId(economicId);
+            legalCustomer.setRegistrationDate(registrationDate);
+            legalCustomer.setCompanyName(companyName);
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return legalCustomer;
     }
 
     public void deleteLegalCustomer(String legalCustomerId) {
@@ -104,7 +112,7 @@ public class LegalCustomerDAO {
                 legalCustomer.setCompanyName(results.getString("COMPANY_NAME"));
                 legalCustomer.setEconomicId(results.getString("ECONOMIC_ID"));
                 legalCustomer.setRegistrationDate(results.getString("REGISTRATION_DATE"));
-                legalCustomer.setCustomerId(results.getString("CUSTOMER_ID"));
+                legalCustomer.setCustomerNumber(results.getString("CUSTOMER_ID"));
                 legalCustomers.add(legalCustomer);
             }
         } catch (SQLException e) {
