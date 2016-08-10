@@ -117,4 +117,20 @@ public class CustomerValidation {
         }
         return true;
     }
+
+    public static boolean validateNationalId(String nationalId) throws InvalidFormatException{
+
+        if(nationalId.length() != 10){
+            throw new InvalidFormatException("فرمت کد ملی صحیح نمی باشد");
+        }
+        return true;
+    }
+
+    public static boolean validateEconomiclId(String nationalId) throws InvalidFormatException{
+
+        if(nationalId.length() != 10){
+            throw new InvalidFormatException("فرمت کد اقتصادی شرکت صحیح نمی باشد");
+        }
+        return true;
+    }
 }
