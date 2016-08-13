@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>addLegalCustomer</title>
+    <title>addRealCustomer</title>
 
     <style>
 
@@ -34,21 +34,26 @@
     </style>
 </head>
 <body>
-<p class="capitalize">اضافه کردن کاربر حقوقی</p>
-<form class="add" action="/AddLegalCustomerServlet" method="get">
-<fieldset>
-    <legend>لطفا اطلاعات کاربر حقوقی را وارد نمایید </legend>
- نام شرکت    <br>
-    <input type="text" name="CompanyName">
-    <br>
- کد اقتصادی    <br>
-    <input type="text" name="EconomicId">
-    <br>
- تاریخ ثبت    <br>
-    <input type="text" name="RegistrationDate">
-    <br><br>
-    <button type="submit" value="RegistrateInformation"><b>ثبت اطاعات</b></button>
-</fieldset>
+<p class="capitalize">اصلاح اطلاعات کاربر حقیقی</p>
+<form class="add" action="/UpdateRealCustomerServlet" method="get">
+    <fieldset>
+        نام    <br>
+        <input type="text" name="Name">
+        <br>
+        نام خانوادگی    <br>
+        <input type="text" name="FamilyName">
+        <br>
+        نام پدر    <br>
+        <input type="text" name="FatherName" >
+        <br>
+        تاریخ تولد    <br>
+        <input type="text" name="BirthDate" >
+        <br>
+        کد ملی    <br>
+        <input type="text" name="NationalId" >
+        <br><br>
+        <button type="submit" value="RegistrateInformation"><b>ثبت اطاعات جدید</b></button>
+    </fieldset>
 </form>
 <div class="style">
     <button onclick="goBack()">صفحه قبل <<</button>
