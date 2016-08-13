@@ -32,13 +32,13 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
                 result.println("<html><head>");
                 result.println("<content='text/html; charset=UTF-8'>");
                 result.println("<title>generatedLegalCustomer</title></head>");
-                result.println("<body style='background-color:#000000;'>");
+                result.println("<body style='background-color:#000000; direction:rtl;'>");
                 result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد</h1>");
                 result.println("</font></body>");
                 result.println("</html>");
             }
         } catch (InvalidEnteranceException e) {
-            result.println("<body style='background-color:#000000;'>");
+            result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }

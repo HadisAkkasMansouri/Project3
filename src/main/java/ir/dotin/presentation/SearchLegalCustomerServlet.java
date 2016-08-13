@@ -34,7 +34,7 @@ public class SearchLegalCustomerServlet extends HttpServlet{
                 response.getWriter().println(PageGenerator.generateSearchOfLegalCustomerHTML(legalCustomers));
             }
         } catch (InvalidFormatException e) {
-            result.println("<body style='background-color:#000000;'>");
+            result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }

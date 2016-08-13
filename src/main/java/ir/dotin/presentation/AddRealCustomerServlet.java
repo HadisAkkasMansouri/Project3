@@ -32,11 +32,11 @@ public class AddRealCustomerServlet extends HttpServlet {
                 response.getWriter().println(PageGenerator.generateAddOfRealCustomerHTML(realCustomer));
             }
         } catch (NullRequiredFieldException e) {
-            result.println("<body style='background-color:#000000;'>");
+            result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         } catch (InvalidFormatException e) {
-            result.println("<body style='background-color:#000000;'>");
+            result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
