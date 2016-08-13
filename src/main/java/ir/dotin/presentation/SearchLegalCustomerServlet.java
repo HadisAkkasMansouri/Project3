@@ -21,9 +21,10 @@ public class SearchLegalCustomerServlet extends HttpServlet{
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
-        String companyName = request.getParameter("CompaneyName");
+        String companyName = request.getParameter("CompanyName");
         String economicId = request.getParameter("EconomicId");
         String legalCustomerId = request.getParameter("LegalCustomerId");
+
         try {
             if(/*CustomerValidation.validateEconomiclId(legalCustomerId) &&*/ economicId.isEmpty()){
                 List<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicId, legalCustomerId);

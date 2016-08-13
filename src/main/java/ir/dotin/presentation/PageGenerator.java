@@ -38,8 +38,8 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getFatherName() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getBirthDate() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getNationalId() + "</td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center\"><a href=/DeleteRealCustomerServlet?id=" + realCustomer.getCustomerNumber() + " class= form \"color: red\"> حذف </a></td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center\"><a href=/UpdateRealCustomerServlet?id=" + realCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/DeleteRealCustomerServlet?id=" + realCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/UpdateRealCustomerServlet?id=" + realCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
         stringBuilder.append("</body>");
@@ -74,8 +74,8 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black \">" + legalCustomer.getCompanyName() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black \">" + legalCustomer.getRegistrationDate() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black \">" + legalCustomer.getEconomicId() + "</td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center \"><a href=/DeleteLegalCustomerServlet?id=" + legalCustomer.getCustomerNumber() + " class= form \"color: red\"> حذف </a></td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center \"><a href=/UpdateLegalCustomerServlet?id=" + legalCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red \"><a href=/DeleteLegalCustomerServlet?id=" + legalCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/UpdateLegalCustomerServlet?id=" + legalCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
         stringBuilder.append("</body>");

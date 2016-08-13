@@ -5,7 +5,6 @@ import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

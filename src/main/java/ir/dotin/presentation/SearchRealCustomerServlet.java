@@ -15,10 +15,6 @@ import java.util.List;
 
 public class SearchRealCustomerServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        addRealCustomerRequest(request, response);
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
