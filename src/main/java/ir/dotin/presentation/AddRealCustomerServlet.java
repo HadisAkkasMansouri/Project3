@@ -29,7 +29,7 @@ public class AddRealCustomerServlet extends HttpServlet {
         try {
             if(CustomerValidation.validateAddRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
                 RealCustomer realCustomer = realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);
-                response.getWriter().println(PageGenerator.generateAddOfRealCustomerHTML(realCustomer));
+                response.getWriter().println(PageGenerator.generateAddRealCustomerPage(realCustomer));
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");

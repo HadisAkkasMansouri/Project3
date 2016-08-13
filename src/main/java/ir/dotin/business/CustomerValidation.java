@@ -1,9 +1,13 @@
 package ir.dotin.business;
 
+import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.dataaccess.RealCustomerDAO;
+import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
+
+import javax.swing.text.Style;
 
 public class CustomerValidation {
 
@@ -115,5 +119,19 @@ public class CustomerValidation {
             throw new InvalidEntranceException("کد اقتصادی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
         }
         return true;
+    }
+
+    public static boolean validateDuplicateEconomicId(String economicId, String customerNumber) throws DuplicateEntranceException{
+        if (LegalCustomerDAO.checkLegalEconomicId(economicId, customerNumber)){
+            return true;
+        }
+        throw new DuplicateEntranceException("یکتا بودن کد اقتصادی الزامی است");
+    }
+
+    public static boolean validateDuplicateNationalId(String nationalId, String customerNumber) throws DuplicateEntranceException{
+        if (RealCustomerDAO.checkRealNationalId(nationalId, customerNumber)){
+            return true;
+        }
+        throw new DuplicateEntranceException("یکتا بودن کد ملی الزامی است");
     }
 }

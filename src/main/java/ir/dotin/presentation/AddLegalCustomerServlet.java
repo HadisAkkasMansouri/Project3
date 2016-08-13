@@ -27,7 +27,7 @@ public class AddLegalCustomerServlet extends HttpServlet {
         try {
             if (CustomerValidation.validateAddLegalCustomer(companyName, economicId, registrationDate)) {
                 LegalCustomer legalCustomer = legalCustomerDAO.addLegalCustomer(companyName, economicId, registrationDate);
-                response.getWriter().println(PageGenerator.generateAddOfLegalCustomerHTML(legalCustomer));
+                response.getWriter().println(PageGenerator.generateAddLegalCustomerPage(legalCustomer));
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");

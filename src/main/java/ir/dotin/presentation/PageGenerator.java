@@ -38,8 +38,8 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getFatherName() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getBirthDate() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black\">" + realCustomer.getNationalId() + "</td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/DeleteRealCustomerServlet?RealCustomerId=" + realCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/UpdateRealCustomerServlet?RealCustomerId=" + realCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/DeleteRealCustomerServlet?RealCustomerNumber=" + realCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; color: red\"><a href=/UpdateRealCustomerServlet?RealCustomerNumber=" + realCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
         stringBuilder.append("</body>");
@@ -83,7 +83,7 @@ public class PageGenerator {
         return stringBuilder.toString();
     }
 
-    public static String generateAddOfRealCustomerHTML(RealCustomer realCustomer){
+    public static String generateAddRealCustomerPage(RealCustomer realCustomer){
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
@@ -126,7 +126,7 @@ public class PageGenerator {
         return stringBuilder.toString();
     }
 
-    public static String generateAddOfLegalCustomerHTML(LegalCustomer legalCustomer){
+    public static String generateAddLegalCustomerPage(LegalCustomer legalCustomer){
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
@@ -172,19 +172,19 @@ public class PageGenerator {
     public static String generateUpdateLegalCustomer(LegalCustomer legalCustomer) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
-        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("<html lang='fa'>");
         stringBuilder.append("<head>");
         stringBuilder.append("    <meta charset=UTF-8>");
-        stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
+        stringBuilder.append("    <link href='/htmlfile/cssfile/styleSheet.css rel=stylesheet'>");
         stringBuilder.append("</head>");
-        stringBuilder.append("<body style='background-color:#000000;  direction:rtl;>");
-        stringBuilder.append("<div id=wrapper>");
-        stringBuilder.append("    <div class=content>");
-        stringBuilder.append("        <div class=box>");
+        stringBuilder.append("<body style='background-color:#000000;direction:rtl;'>");
+        stringBuilder.append("<div id='wrapper'>");
+        stringBuilder.append("    <div class='content'>");
+        stringBuilder.append("        <div class='box'>");
         stringBuilder.append("            <div class=box-in>");
         stringBuilder.append("                </br>");
         stringBuilder.append("                  <h1 style = \"color:#fff8dc; align: right\">ویرایش اطلاعات مشتری حقوقی :</h1>");
-        stringBuilder.append("                 <form action='/SaveChangesLegalCustomerServlet' method='post'>");
+        stringBuilder.append("                 <form action='/SaveChangesLegalCustomerServlet' method='get'>");
         stringBuilder.append("                      </br>");
         stringBuilder.append("                      <input type='hidden' name='id' value='" + legalCustomer.getId() + "'>");
         stringBuilder.append("                      <table>");
@@ -225,12 +225,12 @@ public class PageGenerator {
         stringBuilder.append("    <meta charset=UTF-8>");
         stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
         stringBuilder.append("</head>");
-        stringBuilder.append("<body style='background-color:#000000;  direction:rtl;>");
+        stringBuilder.append("<body style='background-color:#000000;  direction:rtl';>");
         stringBuilder.append("</div>");
-        stringBuilder.append("<div id=wrapper>");
-        stringBuilder.append("    <div class=content>");
-        stringBuilder.append("        <div class=box>");
-        stringBuilder.append("            <div class=box-in>");
+        stringBuilder.append("<div id='wrapper'>");
+        stringBuilder.append("    <div class='content'>");
+        stringBuilder.append("        <div class='box'>");
+        stringBuilder.append("            <div class='box-in'>");
         stringBuilder.append("                <br>");
         stringBuilder.append("<h1 style = \"color:#fff8dc; align: right\">ویرایش اطلاعات مشتری حقیقی :</h1>");
         stringBuilder.append("                 <form action='/SaveChangesRealCustomerServlet'>");
@@ -239,7 +239,7 @@ public class PageGenerator {
         stringBuilder.append("                    <table>");
         stringBuilder.append("                        <tr>");
         stringBuilder.append("                            <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center \" >شماره مشتری</td>");
-        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black\" type='text' name='CustomerNumber' value='" + realCustomer.getCustomerNumber() + "' readonly ></td>");
+        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black\" type='text' name='CustomerNumber' value='" + realCustomer.getId() + "' readonly ></td>");
         stringBuilder.append("                        </tr>");
         stringBuilder.append("                        <tr>");
         stringBuilder.append("                            <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center \" > نام  </td>");

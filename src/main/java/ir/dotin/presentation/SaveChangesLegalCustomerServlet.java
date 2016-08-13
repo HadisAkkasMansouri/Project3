@@ -1,6 +1,8 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomerDAO;
+import ir.dotin.exception.DuplicateEntranceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +23,24 @@ public class SaveChangesLegalCustomerServlet extends HttpServlet {
         PrintWriter result = response.getWriter();
         String companyName = request.getParameter("CompanyName");
         String economicId = request.getParameter("EconomicId");
-        String legalCustomerId = request.getParameter("LegalCustomerId");
-        String registrationDate = request.getParameter("registrationDate");
+        String registrationDate = request.getParameter("RegistrationDate");
+        String customerNumber = request.getParameter("CustomerNumber");
 
         try {
-            legalCustomerDAO.updateLegalCustomer(companyName, registrationDate, economicId, legalCustomerId);
+            if(CustomerValidation.validateDuplicateEconomicId(economicId, customerNumber)) {
+                if(legalCustomerDAO.updateLegalCustomer(companyName, registrationDate, economicId, customerNumber)) {
+                    result.println("<body style='background-color:#000000; direction:rtl;'>");
+                    result.println("<h1 style = \"color:#fff8dc\"'>" + "اطلاعات مشتری حقوقی با موفقیت ویرایش شد" + "</h1>");
+                } else {
+                    result.println("<body style='background-color:#000000; direction:rtl;'>");
+                    result.println("<h1 style = \"color:#fff8dc\"'>" + "خطا ارتباطی٬ لطفا مجددا تلاش نمایید" + "</h1>");
+                }
+            }
+        } catch (DuplicateEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + "اطلاعات مشتری حقوقی با موفقیت ویرایش شد" + "</h1>");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
         }
+
     }
 
     @Override
