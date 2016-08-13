@@ -36,6 +36,14 @@
         <servlet-name>SearchLegalCustomerServlet</servlet-name>
         <servlet-class>ir.dotin.presentation.SearchLegalCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveChangesRealCustomerServlet</servlet-name>
+        <servlet-class>ir.dotin.presentation.SaveChangesRealCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveChangesLegalCustomerServlet</servlet-name>
+        <servlet-class>ir.dotin.presentation.SaveChangesLegalCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddLegalCustomerServlet</servlet-name>
         <url-pattern>/AddLegalCustomerServlet</url-pattern>
@@ -67,5 +75,13 @@
     <servlet-mapping>
         <servlet-name>SearchLegalCustomerServlet</servlet-name>
         <url-pattern>/SearchLegalCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveChangesLegalCustomerServlet</servlet-name>
+        <url-pattern>/SaveChangesLegalCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveChangesRealCustomerServlet</servlet-name>
+        <url-pattern>/SaveChangesRealCustomerServlet</url-pattern>
     </servlet-mapping>
 </web-app>

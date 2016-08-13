@@ -3,7 +3,7 @@ package ir.dotin.presentation;
 import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
-import ir.dotin.exception.InvalidFormatException;
+import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,10 +35,15 @@ public class AddRealCustomerServlet extends HttpServlet {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (InvalidEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.doPost(request, response);
     }
 }

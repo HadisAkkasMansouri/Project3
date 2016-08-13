@@ -1,9 +1,6 @@
 package ir.dotin.presentation;
 
-import ir.dotin.business.CustomerValidation;
-import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
-import ir.dotin.exception.InvalidEntranceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-public class SearchRealCustomerServlet extends HttpServlet {
+public class SaveChangesRealCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,16 +22,10 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String familyName = request.getParameter("FamilyName");
         String realCustomerID = request.getParameter("RealCustomerId");
         String nationalId = request.getParameter("NationalId");
-
-                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalId, realCustomerID);
-                response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);
     }
-
 }
-

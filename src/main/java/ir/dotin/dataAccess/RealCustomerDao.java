@@ -34,7 +34,7 @@ public class RealCustomerDAO extends Customer {
             customerId++;
             String realCustomerNumbre = String.valueOf(customerId);
             Integer id =  CustomerDAO.addCustomer(customerId);
-            String query = "INSERT INTO REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, CUSTOMER_ID , ID) values (?, ?, ?, ?, ?,?, ?);";
+            String query = "INSERT INTO REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_ID, CUSTOMER_NUMBER , ID) values (?, ?, ?, ?, ?,?, ?);";
             System.out.println(query);
             preparedStatement = connection.prepareStatement(query , Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
@@ -63,7 +63,7 @@ public class RealCustomerDAO extends Customer {
     public void deleteRealCustomer(String realCustomerId) {
 
         try {
-            String query = "DELETE FROM REAL_CUSTOMER WHERE CUSTOMER_ID = ?;";
+            String query = "DELETE FROM REAL_CUSTOMER WHERE CUSTOMER_NUMBER = ?;";
             System.out.println(query);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, realCustomerId);
@@ -80,7 +80,7 @@ public class RealCustomerDAO extends Customer {
         StringBuilder query = new StringBuilder("SELECT * FROM REAL_CUSTOMER WHERE ");
         List<String> parameters = new ArrayList<String>();
         if ((realCustomerId != null) && (!realCustomerId.trim().equals(""))) {
-            query.append(" CUSTOMER_ID = ? AND ");
+            query.append(" CUSTOMER_NUMBER = ? AND ");
             parameters.add(realCustomerId);
         }
 
@@ -134,7 +134,7 @@ public class RealCustomerDAO extends Customer {
     }
 
     public static boolean checkRealCustomerId(String realCustomerId) {
-        String query = "SELECT * FROM REAL_CUSTOMER WHERE CUSTOMER_ID = ?;";
+        String query = "SELECT * FROM REAL_CUSTOMER WHERE CUSTOMER_NUMBER = ?;";
         System.out.println(query);
         PreparedStatement preparedStatement = null;
         try {
@@ -148,5 +148,15 @@ public class RealCustomerDAO extends Customer {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void updateRealCustomer(String namme, String familyName, String fatherName, String birthDate, String nationalId) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE real_customer SET NAME = ? , FAMILY_NAME = ?, FATHER_NAME = ?, BIRTH_DATE = ?, NATIONAL _ID =  ?  WHERE CUSTOMER_NUMBER = ?");
+        preparedStatement.setString(1, namme);
+        preparedStatement.setString(2, familyName);
+        preparedStatement.setString(3, fatherName);
+        preparedStatement.setString(4, birthDate);
+        preparedStatement.setString(4, nationalId);
+        preparedStatement.executeUpdate();
     }
 }
