@@ -2,9 +2,10 @@ package ir.dotin.business;
 
 import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.dataaccess.RealCustomerDAO;
-import ir.dotin.exception.InvalidEnteranceException;
+import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.InvalidFormatException;
 import ir.dotin.exception.NullRequiredFieldException;
+import ir.dotin.presentation.SearchRealCustomerServlet;
 
 public class CustomerValidation {
 
@@ -57,21 +58,21 @@ public class CustomerValidation {
         return true;
     }
 
-    public static boolean validateDeleteRealCustomerId(String realCustomerId) throws InvalidEnteranceException{
+    public static boolean validateDeleteRealCustomerId(String realCustomerId) throws InvalidEntranceException {
 
         if (RealCustomerDAO.checkRealCustomerId(realCustomerId)){
             return true;
         }else{
-            throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
+            throw new InvalidEntranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
         }
     }
 
-    public static boolean validateDeleteLegalCustomerId(String legalCustomerId) throws InvalidEnteranceException{
+    public static boolean validateDeleteLegalCustomerId(String legalCustomerId) throws InvalidEntranceException {
 
         if (LegalCustomerDAO.checkLegalCustomerId(legalCustomerId)){
             return true;
         }else{
-            throw new InvalidEnteranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
+            throw new InvalidEntranceException("شماره مشتری وارد شده صحیح نمی باشد٬ لطفا مجددا تلاش کنید");
         }
     }
 
