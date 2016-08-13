@@ -29,17 +29,6 @@ public class AddLegalCustomerServlet extends HttpServlet {
             if (CustomerValidation.validateAddLegalCustomer(companyName, economicId, registrationDate)) {
                 LegalCustomer legalCustomer = legalCustomerDAO.addLegalCustomer(companyName, economicId, registrationDate);
                 response.getWriter().println(PageGenerator.generateAddOfLegalCustomerHTML(legalCustomer));
-//                result.println("<!DOCTYPE html>");
-//                result.println("<html><head>");
-//                result.println("<content='text/html; charset=UTF-8'>");
-//                result.println("<title>generatedLegalCustomer</title></head>");
-//                result.println("<body style='background-color:#000000;'>");
-//                result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقوقی با موفقیت ‌ذخیره شد</h1>");
-//                result.println("<font color='#fff8dc'>" + companyName);
-//                result.println(economicId);
-//                result.println(registrationDate);
-//                result.println("</font></body>");
-//                result.println("</html>");
             }
         } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
