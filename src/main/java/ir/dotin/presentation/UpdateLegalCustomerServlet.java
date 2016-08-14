@@ -1,11 +1,7 @@
 package ir.dotin.presentation;
 
-import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDAO;
-import ir.dotin.exception.DuplicateEntranceException;
-import ir.dotin.exception.NullRequiredFieldException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +28,6 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
         response.getWriter().println(PageGenerator.generateUpdateLegalCustomer(legalCustomer));
-
     }
 
     @Override
