@@ -41,9 +41,4 @@ public class SaveChangesRealCustomerServlet extends HttpServlet {
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
 }

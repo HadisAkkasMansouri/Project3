@@ -27,10 +27,5 @@ public class SearchRealCustomerServlet extends HttpServlet {
                 List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalId, realCustomerID);
                 response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
 }
 

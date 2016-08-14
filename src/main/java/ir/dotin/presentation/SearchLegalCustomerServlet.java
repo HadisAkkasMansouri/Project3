@@ -26,9 +26,4 @@ public class SearchLegalCustomerServlet extends HttpServlet{
                 List<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicId, legalCustomerId);
                 response.getWriter().println(PageGenerator.generateSearchOfLegalCustomerHTML(legalCustomers));
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
 }

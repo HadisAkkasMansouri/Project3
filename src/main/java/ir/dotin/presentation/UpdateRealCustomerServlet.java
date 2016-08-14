@@ -29,9 +29,4 @@ public class UpdateRealCustomerServlet extends HttpServlet {
         }
         response.getWriter().println(PageGenerator.generateUpdateRealCustomer(realCustomer));
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
 }

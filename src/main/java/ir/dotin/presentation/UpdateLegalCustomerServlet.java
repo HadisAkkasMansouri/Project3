@@ -29,9 +29,4 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
         }
         response.getWriter().println(PageGenerator.generateUpdateLegalCustomer(legalCustomer));
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
 }
