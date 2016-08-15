@@ -2,17 +2,17 @@ package ir.dotin.business;
 
 import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
+import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 public class CustomerRealValidation {
-
-
 
     public static RealCustomer validateAddRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws NullRequiredFieldException, InvalidEntranceException {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
-
         if (!name.isEmpty()) {
 
             if (!familyName.isEmpty()) {
@@ -43,5 +43,15 @@ public class CustomerRealValidation {
         } else {
             throw new NullRequiredFieldException("وارد نمودن فیلد نام الزامی است");
         }
+    }
+
+    public static RealCustomer validateUpdateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws InvalidEntranceException, DuplicateEntranceException {
+
+        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
+        if (nationalCode.length() == 10) {
+            RealCustomer realCustomer = realCustomerDAO.updateRealCustomer(name, familyName, fatherName, birthDate, nationalCode);
+            return realCustomer;
+        }
+        throw new InvalidEntranceException("کد ملی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
     }
 }
