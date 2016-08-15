@@ -1,6 +1,6 @@
 package ir.dotin.dataaccess;
 
-public abstract class Customer {
+public class Customer {
 
 
     private int id;
@@ -11,16 +11,16 @@ public abstract class Customer {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCustomerNumber() {
         return customerNumber;
     }
 
     public void setCustomerNumber(String customerId) {
         this.customerNumber = customerId;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

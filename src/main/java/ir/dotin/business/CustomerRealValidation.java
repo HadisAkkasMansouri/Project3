@@ -8,7 +8,7 @@ import ir.dotin.exception.NullRequiredFieldException;
 
 public class CustomerRealValidation {
 
-    public static RealCustomer validateAddRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws NullRequiredFieldException, InvalidEntranceException {
+    public static RealCustomer validateAddRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws NullRequiredFieldException, InvalidEntranceException, DuplicateEntranceException {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         if (!name.isEmpty()) {
@@ -43,11 +43,11 @@ public class CustomerRealValidation {
         }
     }
 
-    public static RealCustomer validateUpdateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws InvalidEntranceException, DuplicateEntranceException {
+    public static RealCustomer validateUpdateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode, String customerNumber) throws InvalidEntranceException, DuplicateEntranceException {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         if (nationalCode.length() == 10) {
-            RealCustomer realCustomer = realCustomerDAO.updateRealCustomer(name, familyName, fatherName, birthDate, nationalCode);
+            RealCustomer realCustomer = realCustomerDAO.updateRealCustomer(name, familyName, fatherName, birthDate, nationalCode, customerNumber);
             return realCustomer;
         }
         throw new InvalidEntranceException("کد ملی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");

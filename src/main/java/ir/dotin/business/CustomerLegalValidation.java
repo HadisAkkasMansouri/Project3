@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class CustomerLegalValidation {
 
-    public static LegalCustomer validateAddLegalCustomer(String companyName, String economicCode, String registrationDate) throws NullRequiredFieldException, InvalidEntranceException {
+    public static LegalCustomer validateAddLegalCustomer(String companyName, String economicCode, String registrationDate) throws NullRequiredFieldException, InvalidEntranceException, DuplicateEntranceException {
 
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
         if (!companyName.isEmpty()) {
@@ -36,11 +36,11 @@ public class CustomerLegalValidation {
         }
     }
 
-    public static LegalCustomer validateUpdateLegalCustomer(String companyName, String economicCode, String registrationDate) throws InvalidEntranceException, DuplicateEntranceException {
+    public static LegalCustomer validateUpdateLegalCustomer(String companyName, String economicCode, String registrationDate, String customerNumber) throws InvalidEntranceException, DuplicateEntranceException {
 
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
         if (economicCode.length() == 10) {
-            LegalCustomer legalCustomer = legalCustomerDAO.updateLegalCustomer(companyName, economicCode, registrationDate);
+            LegalCustomer legalCustomer = legalCustomerDAO.updateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             return legalCustomer;
         }else {
             throw new InvalidEntranceException("کد اقتصادی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
