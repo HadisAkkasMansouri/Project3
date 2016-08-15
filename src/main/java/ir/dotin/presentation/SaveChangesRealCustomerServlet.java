@@ -25,7 +25,6 @@ public class SaveChangesRealCustomerServlet extends HttpServlet {
         String nationalCode = request.getParameter("NationalCode");
         String customerNumber = request.getParameter("CustomerNumber");
 
-
         try {
             CustomerRealValidation.validateUpdateRealCustomer(name, familyName, fatherName, birthDate, nationalCode, customerNumber);
             result.println("<body style='background-color:#000000; direction:rtl;'>");
