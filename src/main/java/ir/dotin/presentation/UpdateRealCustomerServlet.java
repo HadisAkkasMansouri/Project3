@@ -17,7 +17,6 @@ public class UpdateRealCustomerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String realCustomerId = request.getParameter("RealCustomerNumber");
         int id = Integer.parseInt(request.getParameter("ID"));
         RealCustomer realCustomer = null;
         try {
