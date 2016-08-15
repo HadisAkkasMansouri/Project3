@@ -6,8 +6,6 @@ import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 public class CustomerRealValidation {
 
     public static RealCustomer validateAddRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode) throws NullRequiredFieldException, InvalidEntranceException {
