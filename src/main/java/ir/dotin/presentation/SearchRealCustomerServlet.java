@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class SearchRealCustomerServlet extends HttpServlet {
@@ -18,13 +17,12 @@ public class SearchRealCustomerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter result = response.getWriter();
         String name = request.getParameter("Name");
         String familyName = request.getParameter("FamilyName");
-        String realCustomerID = request.getParameter("RealCustomerId");
-        String nationalId = request.getParameter("NationalId");
+        String realCustomerNumber = request.getParameter("RealCustomerNumber");
+        String nationalCode = request.getParameter("NationalCode");
 
-                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalId, realCustomerID);
+                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, realCustomerNumber);
                 response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
     }
 }

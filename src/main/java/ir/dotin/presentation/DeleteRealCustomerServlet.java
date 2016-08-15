@@ -20,10 +20,10 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
         String realCustomerNumber = request.getParameter("RealCustomerNumber");
+        int id = Integer.parseInt(request.getParameter("ID"));
 
-        try {
-            if (CustomerValidation.validateDeleteRealCustomerId(realCustomerNumber)) {
-                realCustomerDAO.deleteRealCustomer(realCustomerNumber);
+
+                realCustomerDAO.deleteRealCustomer(id);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
                 result.println("<content='text/html; charset=UTF-8'>");
@@ -32,11 +32,11 @@ public class DeleteRealCustomerServlet extends HttpServlet {
                 result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
                 result.println("</font></body>");
                 result.println("</html>");
-            }
-        } catch (InvalidEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
-            e.printStackTrace();
-        }
+
+//        } catch (InvalidEntranceException e) {
+//            result.println("<body style='background-color:#000000; direction:rtl;'>");
+//            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+//            e.printStackTrace();
+//        }
     }
 }

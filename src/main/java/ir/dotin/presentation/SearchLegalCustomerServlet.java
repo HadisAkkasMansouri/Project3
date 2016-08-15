@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class SearchLegalCustomerServlet extends HttpServlet{
@@ -18,12 +17,11 @@ public class SearchLegalCustomerServlet extends HttpServlet{
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter result = response.getWriter();
         String companyName = request.getParameter("CompanyName");
-        String economicId = request.getParameter("EconomicId");
-        String legalCustomerId = request.getParameter("LegalCustomerId");
+        String economicCode = request.getParameter("EconomicCode");
+        String legalCustomerNumber = request.getParameter("LegalCustomerNumber");
 
-                List<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicId, legalCustomerId);
+                List<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicCode, legalCustomerNumber);
                 response.getWriter().println(PageGenerator.generateSearchOfLegalCustomerHTML(legalCustomers));
     }
 }

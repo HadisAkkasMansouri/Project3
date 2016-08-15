@@ -1,8 +1,6 @@
 package ir.dotin.presentation;
 
-import ir.dotin.business.CustomerValidation;
 import ir.dotin.dataaccess.LegalCustomerDAO;
-import ir.dotin.exception.InvalidEntranceException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +17,10 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         PrintWriter result = response.getWriter();
-        String legalCustomerId = request.getParameter("LegalCustomerId");
-        try {
-            if (CustomerValidation.validateDeleteLegalCustomerId(legalCustomerId)) {
-                legalCustomerDAO.deleteLegalCustomer(legalCustomerId);
+
+        int id = Integer.parseInt(request.getParameter("ID"));
+
+                legalCustomerDAO.deleteLegalCustomer(id);
                 result.println("<!DOCTYPE html>");
                 result.println("<html><head>");
                 result.println("<content='text/html; charset=UTF-8'>");
@@ -31,11 +29,11 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
                 result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد</h1>");
                 result.println("</font></body>");
                 result.println("</html>");
-            }
-        } catch (InvalidEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
-            e.printStackTrace();
-        }
+
+//        } catch (InvalidEntranceException e) {
+//            result.println("<body style='background-color:#000000; direction:rtl;'>");
+//            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+//            e.printStackTrace();
+//        }
     }
 }
