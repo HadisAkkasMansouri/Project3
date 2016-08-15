@@ -2,6 +2,7 @@ package ir.dotin.presentation;
 
 import ir.dotin.business.CustomerRealValidation;
 import ir.dotin.dataaccess.RealCustomer;
+import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 import javax.servlet.ServletException;
@@ -32,6 +33,10 @@ public class AddRealCustomerServlet extends HttpServlet {
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         } catch (NullRequiredFieldException e) {
+            result.println("<body style='background-color:#000000; direction:rtl;'>");
+            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            e.printStackTrace();
+        } catch (DuplicateEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
