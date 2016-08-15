@@ -1,8 +1,7 @@
 package ir.dotin.presentation;
 
-import ir.dotin.business.CustomerValidation;
+import ir.dotin.business.CustomerRealValidation;
 import ir.dotin.dataaccess.RealCustomer;
-import ir.dotin.dataaccess.RealCustomerDAO;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 import javax.servlet.ServletException;
@@ -14,9 +13,8 @@ import java.io.PrintWriter;
 
 public class AddRealCustomerServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -25,17 +23,15 @@ public class AddRealCustomerServlet extends HttpServlet {
         String familyName = request.getParameter("FamilyName");
         String fatherName = request.getParameter("FatherName");
         String birthDate = request.getParameter("BirthDate");
-        String nationalId = request.getParameter("NationalId");
+        String nationalCode = request.getParameter("NationalCode");
         try {
-            if(CustomerValidation.validateAddRealCustomer(name, familyName, fatherName, birthDate, nationalId)){
-                RealCustomer realCustomer = realCustomerDAO.addRealCustomer(name, familyName, fatherName, birthDate, nationalId);
-                response.getWriter().println(PageGenerator.generateAddRealCustomerPage(realCustomer));
-            }
-        } catch (NullRequiredFieldException e) {
+            RealCustomer realCustomer = CustomerRealValidation.validateAddRealCustomer(name, familyName, fatherName, birthDate, nationalCode);
+            response.getWriter().println(PageGenerator.generateAddRealCustomerPage(realCustomer));
+        } catch (InvalidEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
-        } catch (InvalidEntranceException e) {
+        } catch (NullRequiredFieldException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
             result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
