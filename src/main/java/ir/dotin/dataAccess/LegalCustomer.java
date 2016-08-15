@@ -4,8 +4,8 @@ public class LegalCustomer extends Customer {
 
     private String companyName;
     private String registrationDate;
-    private String economicId;
-    private String customerNumber;
+    private String economicCode;
+    private int id;
 
     public String getCompanyName() {
         return companyName;
@@ -15,8 +15,13 @@ public class LegalCustomer extends Customer {
         return registrationDate;
     }
 
-    public String getEconomicId() {
-        return economicId;
+    public String getEconomicCode() {
+        return economicCode;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     public void setCompanyName(String companyName) {
@@ -27,14 +32,14 @@ public class LegalCustomer extends Customer {
         this.registrationDate = registrationDate;
     }
 
-    public void setEconomicId(String economicId) {
-        this.economicId = economicId;
+    public void setEconomicCode(String economicCode) {
+        this.economicCode = economicCode;
     }
 
     @Override
-    public void setCustomerNumber(String customerNumber) {
-        super.setCustomerNumber(customerNumber);
-        this.customerNumber = customerNumber;
+    public void setId(int id) {
+        super.setId(id);
+        this.id = id;
     }
 
     @Override
@@ -42,8 +47,8 @@ public class LegalCustomer extends Customer {
         return "RealCustomer{" +
                 "name ='" + companyName + '\'' +
                 ", registrationDate ='" + registrationDate + '\'' +
-                ", economicId ='" + economicId + '\'' +
-                ", customerId ='" + customerNumber + '\'' +
+                ", economicId ='" + economicCode + '\'' +
+                ", id ='" + id + '\'' +
                 '}';
     }
 }
