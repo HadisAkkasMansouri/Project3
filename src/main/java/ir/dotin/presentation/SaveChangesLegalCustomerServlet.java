@@ -23,7 +23,6 @@ public class SaveChangesLegalCustomerServlet extends HttpServlet {
         String economicCode = request.getParameter("EconomicCode");
         String registrationDate = request.getParameter("RegistrationDate");
         String customerNumber = request.getParameter("CustomerNumber");
-
         try {
             LegalCustomer legalCustomer = CustomerLegalValidation.validateUpdateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             response.getWriter().println(PageGenerator.generateSaveChangesLegalCustomer(legalCustomer));
