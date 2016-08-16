@@ -1,8 +1,6 @@
 package ir.dotin.presentation;
 
-import ir.dotin.business.CustomerValidation;
-import ir.dotin.dataaccess.RealCustomerDAO;
-import ir.dotin.exception.InvalidEntranceException;
+import ir.dotin.business.CustomerRealValidation;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +12,6 @@ public class DeleteRealCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -22,16 +19,15 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         String realCustomerNumber = request.getParameter("RealCustomerNumber");
         int id = Integer.parseInt(request.getParameter("ID"));
 
-
-                realCustomerDAO.deleteRealCustomer(id);
-                result.println("<!DOCTYPE html>");
-                result.println("<html><head>");
-                result.println("<content='text/html; charset=UTF-8'>");
-                result.println("<title>generatedRealCustomer</title></head>");
-                result.println("<body style='background-color:#000000; direction:rtl;'>");
-                result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
-                result.println("</font></body>");
-                result.println("</html>");
+        CustomerRealValidation.deleteRealCustomer(id);
+        result.println("<!DOCTYPE html>");
+        result.println("<html><head>");
+        result.println("<content='text/html; charset=UTF-8'>");
+        result.println("<title>generatedRealCustomer</title></head>");
+        result.println("<body style='background-color:#000000; direction:rtl;'>");
+        result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
+        result.println("</font></body>");
+        result.println("</html>");
 
 //        } catch (InvalidEntranceException e) {
 //            result.println("<body style='background-color:#000000; direction:rtl;'>");

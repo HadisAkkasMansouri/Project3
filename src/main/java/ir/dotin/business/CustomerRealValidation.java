@@ -52,4 +52,14 @@ public class CustomerRealValidation {
         }
         throw new InvalidEntranceException("کد ملی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
     }
+
+    public static boolean deleteRealCustomer(int id){
+
+        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
+        if(realCustomerDAO.deleteRealCustomer(id)){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

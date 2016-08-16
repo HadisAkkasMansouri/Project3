@@ -47,14 +47,13 @@ public class CustomerLegalValidation {
         }
     }
 
-//    public static ArrayList<LegalCustomer> validateSearchLegalCustomer(String companyName, String economicCode, String legalCustomerNumber) throws InvalidEntranceException {
-//
-//        LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
-//        if (economicCode.length() == 10) {
-//            ArrayList<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicCode, legalCustomerNumber);
-//            return legalCustomers;
-//        }else {
-//            throw new InvalidEntranceException("کد اقتصادی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
-//        }
-//    }
+     public static boolean deleteLegalCustomer(int id){
+
+         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+         if(legalCustomerDAO.deleteLegalCustomer(id)){
+             return true;
+         }else {
+             return false;
+         }
+     }
 }

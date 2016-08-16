@@ -1,6 +1,5 @@
 package ir.dotin.dataaccess;
 
-import com.mysql.jdbc.Statement;
 import ir.dotin.utility.SingleConnection;
 
 import java.sql.Connection;
@@ -12,33 +11,33 @@ public class CustomerDAO {
 
     public static Connection connection = null;
 
-    public static int addCustomer(int id, String customerNumber) throws SQLException {
+    public static int addCustomer(String customerNumber) throws SQLException {
+
+        int id = getMaxId();
         connection = SingleConnection.getConnection();
         String query = "INSERT INTO CUSTOMER(ID, CUSTOMER_NUMBER) values (?, ?);";
         System.out.println(query);
-        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.setString(2, customerNumber);
         preparedStatement.executeUpdate();
-        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            id = generatedKeys.getInt(1);
-        }
         return id;
     }
 
-    public static String getMaxCustomerNumber() {
+    public static int getMaxCustomerNumber() {
         PreparedStatement preparedStatement = null;
-        String customerNumber = null;
+        int customerNumber = 0;
         try {
             connection = SingleConnection.getConnection();
             String query = "SELECT MAX(CUSTOMER_NUMBER) FROM CUSTOMER;";
             System.out.println(query);
+            preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                customerNumber = resultSet.getString(1);
+            resultSet.next();
+            if (resultSet.getInt(1) != 0) {
+                customerNumber = resultSet.getInt(1) + 1;
             } else {
-                customerNumber = String.valueOf(10000);
+                customerNumber = 10000;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,5 +57,66 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public static int getMaxId() {
+
+        PreparedStatement preparedStatement = null;
+        int id = 0;
+        try {
+            connection = SingleConnection.getConnection();
+            String query = "SELECT MAX(ID) FROM CUSTOMER;";
+            System.out.println(query);
+            preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            if (resultSet.getInt(1) != 0) {
+                id = resultSet.getInt(1) + 1;
+            } else {
+                id = 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public static String getCustomerNumberById(int id) {
+
+        PreparedStatement preparedStatement = null;
+        connection = SingleConnection.getConnection();
+        String customerNumber = null;
+        try {
+            String query = "SELECT (CUSTOMER_NUMBER) FROM CUSTOMER WHERE ID = ?;";
+            System.out.println(query);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                customerNumber = String.valueOf(resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerNumber;
+    }
+
+    public static int getIdByCustomerNumber(String customerNumber){
+
+        PreparedStatement preparedStatement = null;
+        connection = SingleConnection.getConnection();
+        int id = 0;
+        try {
+            String query = "SELECT (ID) FROM CUSTOMER WHERE CUSTOMER_NUMBER = ?;";
+            System.out.println(query);
+            preparedStatement.setString(1, customerNumber);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                id = resultSet.getInt(1);
+            }
+        }catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return id;
     }
 }
