@@ -22,7 +22,7 @@ public class CustomerLegalValidation {
                     if (economicCode.length() == 10) {
                         LegalCustomer legalCustomer = legalCustomerDAO.addLegalCustomer(companyName, economicCode, registrationDate);
                         return legalCustomer;
-                    }else {
+                    } else {
                         throw new InvalidEntranceException("کد اقتصادی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
                     }
                 } else {
@@ -42,18 +42,25 @@ public class CustomerLegalValidation {
         if (economicCode.length() == 10) {
             LegalCustomer legalCustomer = legalCustomerDAO.updateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             return legalCustomer;
-        }else {
+        } else {
             throw new InvalidEntranceException("کد اقتصادی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
         }
     }
 
-     public static boolean deleteLegalCustomer(int id){
+    public static boolean deleteLegalCustomer(int id) {
 
-         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
-         if(legalCustomerDAO.deleteLegalCustomer(id)){
-             return true;
-         }else {
-             return false;
-         }
-     }
+        LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+        if (legalCustomerDAO.deleteLegalCustomer(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static ArrayList<LegalCustomer> searchLegalCustomer(String companyName, String economicCode, String legalCustomerNumber) {
+
+        LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+        ArrayList<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicCode, legalCustomerNumber);
+        return legalCustomers;
+    }
 }

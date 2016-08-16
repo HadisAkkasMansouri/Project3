@@ -1,7 +1,7 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerRealValidation;
 import ir.dotin.dataaccess.RealCustomer;
-import ir.dotin.dataaccess.RealCustomerDAO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,6 @@ public class SearchRealCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -22,8 +21,8 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String realCustomerNumber = request.getParameter("RealCustomerNumber");
         String nationalCode = request.getParameter("NationalCode");
 
-                List<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, realCustomerNumber);
-                response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
+        List<RealCustomer> realCustomers = CustomerRealValidation.searchRealCustomer(name, familyName, nationalCode, realCustomerNumber);
+        response.getWriter().println(PageGenerator.generateSearchOfRealCustomerHTML(realCustomers));
     }
 }
 

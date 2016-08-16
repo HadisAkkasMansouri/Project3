@@ -1,10 +1,14 @@
 package ir.dotin.business;
 
+import ir.dotin.dataaccess.LegalCustomer;
+import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
+
+import java.util.ArrayList;
 
 public class CustomerRealValidation {
 
@@ -53,13 +57,20 @@ public class CustomerRealValidation {
         throw new InvalidEntranceException("کد ملی وارد شده صحیح نمی باشد لطفا مجددا تلاش نمایید");
     }
 
-    public static boolean deleteRealCustomer(int id){
+    public static boolean deleteRealCustomer(int id) {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
-        if(realCustomerDAO.deleteRealCustomer(id)){
+        if (realCustomerDAO.deleteRealCustomer(id)) {
             return true;
-        }else {
+        } else {
             return false;
         }
+    }
+
+    public static ArrayList<RealCustomer> searchRealCustomer(String name, String familyName, String nationalCode, String customerNumber) {
+
+        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
+        ArrayList<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, customerNumber);
+        return realCustomers;
     }
 }
