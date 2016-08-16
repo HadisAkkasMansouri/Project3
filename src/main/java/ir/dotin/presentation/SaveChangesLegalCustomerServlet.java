@@ -29,11 +29,11 @@ public class SaveChangesLegalCustomerServlet extends HttpServlet {
             response.getWriter().println(PageGenerator.generateSaveChangesLegalCustomer(legalCustomer));
         } catch (InvalidEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         } catch (DuplicateEntranceException e) {
             result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
+            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
             e.printStackTrace();
         }
     }

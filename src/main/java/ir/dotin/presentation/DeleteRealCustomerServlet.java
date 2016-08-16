@@ -25,7 +25,7 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         result.println("<content='text/html; charset=UTF-8'>");
         result.println("<title>generatedRealCustomer</title></head>");
         result.println("<body style='background-color:#000000; direction:rtl;'>");
-        result.println("<h1 style = \"color:#fff8dc\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
+        result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin\"'>اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد</h1>");
         result.println("</font></body>");
         result.println("</html>");
 
