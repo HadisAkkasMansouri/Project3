@@ -4,6 +4,8 @@ import ir.dotin.business.CustomerLegalValidation;
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
+import ir.dotin.utility.PageGenerator;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

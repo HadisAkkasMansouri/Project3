@@ -1,4 +1,4 @@
-package ir.dotin.presentation;
+package ir.dotin.utility;
 
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.RealCustomer;
@@ -46,7 +46,7 @@ public class PageGenerator {
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
-        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("<a href= htmlfile/real-customer-management.html class=form></a>;}");
         stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
