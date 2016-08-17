@@ -27,16 +27,13 @@ public class AddLegalCustomerServlet extends HttpServlet {
             LegalCustomer legalCustomer = CustomerLegalValidation.validateAddLegalCustomer(companyName, economicCode, registrationDate);
             response.getWriter().println(PageGenerator.generateAddLegalCustomerPage(legalCustomer));
         } catch (InvalidEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         } catch (NullRequiredFieldException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         } catch (DuplicateEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         }
     }
