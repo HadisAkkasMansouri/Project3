@@ -2,10 +2,12 @@ package ir.dotin.business;
 
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDAO;
+import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerLegalValidation {
@@ -19,7 +21,7 @@ public class CustomerLegalValidation {
 
                 if (!registrationDate.isEmpty()) {
 
-                    if (economicCode.length() != 10) {
+                    if (economicCode.length() == 10) {
                         LegalCustomer legalCustomer = legalCustomerDAO.addLegalCustomer(companyName, economicCode, registrationDate);
                         return legalCustomer;
                     } else {
@@ -39,7 +41,7 @@ public class CustomerLegalValidation {
     public static LegalCustomer validateUpdateLegalCustomer(String companyName, String economicCode, String registrationDate, String customerNumber) throws InvalidEntranceException, DuplicateEntranceException {
 
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
-        if (economicCode.length() != 10) {
+        if (economicCode.length() == 10) {
             LegalCustomer legalCustomer = legalCustomerDAO.updateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             return legalCustomer;
         } else {
@@ -62,5 +64,12 @@ public class CustomerLegalValidation {
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
         ArrayList<LegalCustomer> legalCustomers = legalCustomerDAO.searchLegalCustomer(companyName, economicCode, legalCustomerNumber);
         return legalCustomers;
+    }
+
+    public static LegalCustomer getLegalCustomer(int id) throws SQLException {
+
+        LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
+        LegalCustomer legalCustomer =  legalCustomerDAO.getLegalCustomer(id);
+        return legalCustomer;
     }
 }

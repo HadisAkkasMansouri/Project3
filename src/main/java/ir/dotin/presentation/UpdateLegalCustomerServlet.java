@@ -1,8 +1,7 @@
 package ir.dotin.presentation;
 
-import com.sun.org.apache.xpath.internal.operations.String;
+import ir.dotin.business.CustomerLegalValidation;
 import ir.dotin.dataaccess.LegalCustomer;
-import ir.dotin.dataaccess.LegalCustomerDAO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -22,10 +20,11 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
 
         LegalCustomer legalCustomer = null;
         try {
-            legalCustomer = legalCustomerDAO.GetLegalCustomer(id);
+            legalCustomer = CustomerLegalValidation.getLegalCustomer(id);
+            response.getWriter().println(PageGenerator.generateUpdateLegalCustomer(legalCustomer));
         } catch (SQLException e) {
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         }
-        response.getWriter().println(PageGenerator.generateUpdateLegalCustomer(legalCustomer));
     }
 }

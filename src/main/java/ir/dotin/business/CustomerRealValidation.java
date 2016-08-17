@@ -8,6 +8,7 @@ import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerRealValidation {
@@ -72,5 +73,12 @@ public class CustomerRealValidation {
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         ArrayList<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, customerNumber);
         return realCustomers;
+    }
+
+    public static RealCustomer getRealCustomer(int id) throws SQLException {
+
+        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
+        RealCustomer realCustomer =  realCustomerDAO.getRealCustomer(id);
+        return realCustomer;
     }
 }

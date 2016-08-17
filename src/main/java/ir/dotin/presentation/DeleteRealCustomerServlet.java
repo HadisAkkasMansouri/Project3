@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class DeleteRealCustomerServlet extends HttpServlet {
 
@@ -15,11 +14,12 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter result = response.getWriter();
-        String realCustomerNumber = request.getParameter("RealCustomerNumber");
         int id = Integer.parseInt(request.getParameter("ID"));
 
-        CustomerRealValidation.deleteRealCustomer(id);
-        response.getWriter().println(PageGenerator.generateresultPage("اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد"));
+        if(CustomerRealValidation.deleteRealCustomer(id)){
+            response.getWriter().println(PageGenerator.generateresultPage("اطلاعات مشتری حقیقی وارد شده با موفقیت حذف شد"));
+        }else {
+            response.getWriter().println(PageGenerator.generateresultPage("خطا! عملیات خذف مشتری حقیقی موفقیت آمیز نبود لطفا مجددا تلاش نمایید"));
+        }
     }
 }

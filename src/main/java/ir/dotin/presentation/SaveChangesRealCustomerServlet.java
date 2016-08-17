@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class SaveChangesRealCustomerServlet extends HttpServlet {
 
@@ -17,7 +16,6 @@ public class SaveChangesRealCustomerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter result = response.getWriter();
         String name = request.getParameter("Name");
         String fatherName = request.getParameter("FatherName");
         String familyName = request.getParameter("FamilyName");

@@ -1,7 +1,7 @@
 package ir.dotin.presentation;
 
+import ir.dotin.business.CustomerRealValidation;
 import ir.dotin.dataaccess.RealCustomer;
-import ir.dotin.dataaccess.RealCustomerDAO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +13,17 @@ public class UpdateRealCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         int id = Integer.parseInt(request.getParameter("ID"));
         RealCustomer realCustomer = null;
         try {
-            realCustomer = realCustomerDAO.GetRealCustomer(id);
+            realCustomer = CustomerRealValidation.getRealCustomer(id);
+            response.getWriter().println(PageGenerator.generateUpdateRealCustomer(realCustomer));
         } catch (SQLException e) {
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         }
-        response.getWriter().println(PageGenerator.generateUpdateRealCustomer(realCustomer));
     }
 }
