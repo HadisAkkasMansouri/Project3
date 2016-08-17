@@ -1,5 +1,6 @@
 package ir.dotin.presentation;
 
+import com.sun.org.apache.xpath.internal.operations.String;
 import ir.dotin.dataaccess.LegalCustomer;
 import ir.dotin.dataaccess.LegalCustomerDAO;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        int id = Integer.parseInt(request.getParameter("ID"));
+        int id = Integer.valueOf(request.getParameter("ID"));
 
         LegalCustomer legalCustomer = null;
         try {

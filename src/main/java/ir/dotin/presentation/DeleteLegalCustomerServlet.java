@@ -20,19 +20,6 @@ public class DeleteLegalCustomerServlet extends HttpServlet {
         int id = Integer.valueOf(request.getParameter("ID"));
 
         CustomerLegalValidation.deleteLegalCustomer(id);
-        result.println("<!DOCTYPE html>");
-        result.println("<html><head>");
-        result.println("<content='text/html; charset=UTF-8'>");
-        result.println("<title>generatedLegalCustomer</title></head>");
-        result.println("<body style='background-color:#000000; direction:rtl;'>");
-        result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد</h1>");
-        result.println("</font></body>");
-        result.println("</html>");
-
-//        } catch (InvalidEntranceException e) {
-//            result.println("<body style='background-color:#000000; direction:rtl;'>");
-//            result.println("<h1 style = \"color:#fff8dc\"'>" + e.getMessage() + "</h1>");
-//            e.printStackTrace();
-//        }
+        response.getWriter().println(PageGenerator.generateresultPage("اطلاعات مشتری حقوقی وارد شده با موفقیت حذف شد"));
     }
 }

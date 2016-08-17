@@ -28,12 +28,10 @@ public class SaveChangesLegalCustomerServlet extends HttpServlet {
             LegalCustomer legalCustomer = CustomerLegalValidation.validateUpdateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             response.getWriter().println(PageGenerator.generateSaveChangesLegalCustomer(legalCustomer));
         } catch (InvalidEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         } catch (DuplicateEntranceException e) {
-            result.println("<body style='background-color:#000000; direction:rtl;'>");
-            result.println("<h1 style = \"color:#fff8dc; font-family: B Nazanin \"'>" + e.getMessage() + "</h1>");
+            response.getWriter().println(PageGenerator.generateresultPage(e.getMessage()));
             e.printStackTrace();
         }
     }

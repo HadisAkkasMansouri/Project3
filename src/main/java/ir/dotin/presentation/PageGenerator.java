@@ -37,11 +37,17 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + realCustomer.getFatherName() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + realCustomer.getBirthDate() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + realCustomer.getNationalCode() + "</td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/DeleteRealCustomerServlet?RealCustomerNumber=" + realCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateRealCustomerServlet?RealCustomerNumber=" + realCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/DeleteRealCustomerServlet?ID=" + realCustomer.getId() + " class= form > حذف </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateRealCustomerServlet?ID=" + realCustomer.getId() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
-        stringBuilder.append("                    <a href= htmlfile/real-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
@@ -73,11 +79,17 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getCompanyName() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getRegistrationDate() + "</td>");
             stringBuilder.append("<td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getEconomicCode() + "</td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin \"><a href=/DeleteLegalCustomerServlet?LegalCustomerId=" + legalCustomer.getCustomerNumber() + " class= form > حذف </a></td>");
-            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateLegalCustomerServlet?LegalCustomerId=" + legalCustomer.getCustomerNumber() + " class=form> اصلاح </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin \"><a href=/DeleteLegalCustomerServlet?ID=" + legalCustomer.getId() + " class= form > حذف </a></td>");
+            stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateLegalCustomerServlet?ID=" + legalCustomer.getId() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
-        stringBuilder.append("                    <a href= htmlfile/legal-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
@@ -102,26 +114,37 @@ public class PageGenerator {
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > شماره مشتری </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getCustomerNumber() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام خانوادگی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getFamilyName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام پدر </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getFatherName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > تاریخ تولد </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getBirthDate() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > کد ملی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getNationalCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</th>");
         stringBuilder.append("</table>");
         stringBuilder.append("</body>");
-        stringBuilder.append("                    <a href= htmlfile/real-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
     }
@@ -147,23 +170,26 @@ public class PageGenerator {
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > شماره مشتری </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getCustomerNumber() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام شرکت </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getCompanyName() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > تاریخ ثبت </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getRegistrationDate() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > کد اقتصادی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getEconomicCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</table>");
-        stringBuilder.append("                    <a href= htmlfile/legal-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
@@ -201,7 +227,7 @@ public class PageGenerator {
         stringBuilder.append("                          </tr>");
         stringBuilder.append("                          <tr>");
         stringBuilder.append("                              <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" >کد اقتصادی</td>");
-        stringBuilder.append("                              <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\" type='text' name='EconomicId' value='" + legalCustomer.getEconomicCode() + "'></td>");
+        stringBuilder.append("                              <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\" type='text' name='EconomicCode' value='" + legalCustomer.getEconomicCode() + "'></td>");
         stringBuilder.append("                          </tr>");
         stringBuilder.append("                    </table>");
         stringBuilder.append("                    <input style = \"font-weight: bold; font-family: B Nazanin\" type='submit' class='button' value='ثبت اطاعات جدید'>");
@@ -210,7 +236,13 @@ public class PageGenerator {
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");
         stringBuilder.append("</div>");
-        stringBuilder.append("                    <a href= htmlfile/legal-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
 
@@ -258,7 +290,7 @@ public class PageGenerator {
         stringBuilder.append("                        </tr>");
         stringBuilder.append("                        <tr>");
         stringBuilder.append("                            <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" >کد ملی</td>");
-        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \" type='text' name='NationalId' value='" + realCustomer.getNationalCode() + "'></td>");
+        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \" type='text' name='NationalCode' value='" + realCustomer.getNationalCode() + "'></td>");
         stringBuilder.append("                        </tr>");
         stringBuilder.append("                    </table>");
         stringBuilder.append("                    <input style = \"font-weight: bold; font-family: B Nazanin\" type='submit' class='button' value='ثبت اطاعات جدید'>");
@@ -267,7 +299,13 @@ public class PageGenerator {
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");
         stringBuilder.append("</div>");
-        stringBuilder.append("                    <a href= htmlfile/real-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
 
@@ -294,23 +332,26 @@ public class PageGenerator {
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > شماره مشتری </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getCustomerNumber() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام شرکت </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getCompanyName() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > تاریخ ثبت </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + legalCustomer.getRegistrationDate() + "</td>");
         stringBuilder.append("                     </tr>");
-
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > کد اقتصادی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getEconomicCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</table>");
-        stringBuilder.append("                    <a href= htmlfile/legal-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
@@ -335,28 +376,59 @@ public class PageGenerator {
         stringBuilder.append("                    <tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > شماره مشتری </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getCustomerNumber() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                     </tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                     </tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام خانوادگی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getFamilyName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                     </tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام پدر </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getFatherName() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                     </tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > تاریخ تولد </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getBirthDate() + "</td>");
-        stringBuilder.append("                     </tr>");stringBuilder.append("                    <tr>");
+        stringBuilder.append("                     </tr>");
+        stringBuilder.append("                     </tr>");
         stringBuilder.append("                          <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > کد ملی </td>");
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \">" + realCustomer.getNationalCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</th>");
         stringBuilder.append("</table>");
-        stringBuilder.append("                    <a href= htmlfile/real-customer.html class=form>صفحه قبل</a>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();
+    }
+
+    public static String generateresultPage(String message){
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<!DOCTYPE html>");
+        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("    <meta charset=UTF-8>");
+        stringBuilder.append("<body style='background-color:#000000; direction:rtl;'>");
+        stringBuilder.append("<h1 style = \"color:#fff8dc; align: center; font-family: B Nazanin \"'>" + message + "</h1>");
+        stringBuilder.append("<div class=style>");
+        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<script>");
+        stringBuilder.append("function goBack() {");
+        stringBuilder.append("window.history.back();}");
+        stringBuilder.append("</script>");
+        stringBuilder.append("</body>");
+        return stringBuilder.toString();
+
     }
 
 }

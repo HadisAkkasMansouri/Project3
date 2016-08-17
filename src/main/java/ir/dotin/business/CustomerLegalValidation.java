@@ -19,7 +19,7 @@ public class CustomerLegalValidation {
 
                 if (!registrationDate.isEmpty()) {
 
-                    if (economicCode.length() == 10) {
+                    if (economicCode.length() != 10) {
                         LegalCustomer legalCustomer = legalCustomerDAO.addLegalCustomer(companyName, economicCode, registrationDate);
                         return legalCustomer;
                     } else {
@@ -39,7 +39,7 @@ public class CustomerLegalValidation {
     public static LegalCustomer validateUpdateLegalCustomer(String companyName, String economicCode, String registrationDate, String customerNumber) throws InvalidEntranceException, DuplicateEntranceException {
 
         LegalCustomerDAO legalCustomerDAO = new LegalCustomerDAO();
-        if (economicCode.length() == 10) {
+        if (economicCode.length() != 10) {
             LegalCustomer legalCustomer = legalCustomerDAO.updateLegalCustomer(companyName, economicCode, registrationDate, customerNumber);
             return legalCustomer;
         } else {
