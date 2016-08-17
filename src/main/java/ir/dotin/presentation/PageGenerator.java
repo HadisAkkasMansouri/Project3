@@ -41,8 +41,8 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateRealCustomerServlet?ID=" + realCustomer.getId() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -83,8 +83,8 @@ public class PageGenerator {
             stringBuilder.append("<td style = \"background:#fff8dc; font-weight: bold; text-align: center; font-family: B Nazanin\"><a href=/UpdateLegalCustomerServlet?ID=" + legalCustomer.getId() + " class=form> اصلاح </a></td>");
         }
         stringBuilder.append("</table>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -139,8 +139,8 @@ public class PageGenerator {
         stringBuilder.append("</table>");
         stringBuilder.append("</body>");
         stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
-        stringBuilder.append("</div>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
         stringBuilder.append("window.history.back();}");
@@ -183,8 +183,8 @@ public class PageGenerator {
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getEconomicCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</table>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -236,8 +236,8 @@ public class PageGenerator {
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");
         stringBuilder.append("</div>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -299,8 +299,8 @@ public class PageGenerator {
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");
         stringBuilder.append("</div>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -345,8 +345,8 @@ public class PageGenerator {
         stringBuilder.append("                          <td style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin\">" + legalCustomer.getEconomicCode() + "</td>");
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</table>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -399,8 +399,8 @@ public class PageGenerator {
         stringBuilder.append("                     </tr>");
         stringBuilder.append("</th>");
         stringBuilder.append("</table>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
@@ -419,8 +419,8 @@ public class PageGenerator {
         stringBuilder.append("    <meta charset=UTF-8>");
         stringBuilder.append("<body style='background-color:#000000; direction:rtl;'>");
         stringBuilder.append("<h1 style = \"color:#fff8dc; align: center; font-family: B Nazanin \"'>" + message + "</h1>");
-        stringBuilder.append("<div class=style>");
-        stringBuilder.append("<button onclick=\"goBack()\">صفحه قبل <<</button>");
+        stringBuilder.append("<div class=style></br></br></br></br></br></br></br></br></br></br></br></br></br></br>");
+        stringBuilder.append("<button onclick=\"goBack()\" style='float:left; margin-left:95px;' >صفحه قبل >></button>");
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
