@@ -270,7 +270,7 @@ public class PageGenerator {
         stringBuilder.append("                    <table>");
         stringBuilder.append("                        <tr>");
         stringBuilder.append("                            <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" >شماره مشتری</td>");
-        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \" type='text' name='CustomerNumber' value='" + realCustomer.getId() + "' readonly ></td>");
+        stringBuilder.append("                            <td><input style = \"background:#fff8dc; text-align: center; color:black; font-family: B Nazanin \" type='text' name='CustomerNumber' value='" + realCustomer.getCustomerNumber() + "' readonly ></td>");
         stringBuilder.append("                        </tr>");
         stringBuilder.append("                        <tr>");
         stringBuilder.append("                            <td style = \"background: #b8860b ; color: black; font-weight: bold; text-align: center; font-family: B Nazanin \" > نام  </td>");
