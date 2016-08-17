@@ -1,7 +1,5 @@
 package ir.dotin.business;
 
-import ir.dotin.dataaccess.LegalCustomer;
-import ir.dotin.dataaccess.LegalCustomerDAO;
 import ir.dotin.dataaccess.RealCustomer;
 import ir.dotin.dataaccess.RealCustomerDAO;
 import ir.dotin.exception.DuplicateEntranceException;
