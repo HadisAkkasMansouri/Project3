@@ -66,10 +66,10 @@ public class CustomerRealValidation {
         }
     }
 
-    public static ArrayList<RealCustomer> searchRealCustomer(String name, String familyName, String nationalCode, String customerNumber) {
+    public static ArrayList<RealCustomer> searchRealCustomer(String name, String familyName, String nationalCode, String realCustomerNumber) {
 
         RealCustomerDAO realCustomerDAO = new RealCustomerDAO();
-        ArrayList<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, customerNumber);
+        ArrayList<RealCustomer> realCustomers = realCustomerDAO.searchRealCustomer(name, familyName, nationalCode, realCustomerNumber);
         return realCustomers;
     }
 

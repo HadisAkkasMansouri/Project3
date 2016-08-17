@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class CustomerDAO {
 
-    public static Connection connection = null;
+    static Connection connection = null;
 
     public static int addCustomer(String customerNumber) throws SQLException {
 
@@ -25,13 +25,13 @@ public class CustomerDAO {
     }
 
     public static int getMaxCustomerNumber() {
-        PreparedStatement preparedStatement = null;
+
         int customerNumber = 0;
         try {
             connection = SingleConnection.getConnection();
             String query = "SELECT MAX(CUSTOMER_NUMBER) FROM CUSTOMER;";
             System.out.println(query);
-            preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             if (resultSet.getInt(1) != 0) {
@@ -48,9 +48,9 @@ public class CustomerDAO {
     public static boolean deleteCustomer(int id) {
 
         try {
-            String query1 = "DELETE FROM CUSTOMER WHERE ID = ?;";
-            System.out.println(query1);
-            PreparedStatement preparedStatement = connection.prepareStatement(query1);
+            String query = "DELETE FROM CUSTOMER WHERE ID = ?;";
+            System.out.println(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -61,13 +61,12 @@ public class CustomerDAO {
 
     public static int getMaxId() {
 
-        PreparedStatement preparedStatement = null;
         int id = 0;
         try {
             connection = SingleConnection.getConnection();
             String query = "SELECT MAX(ID) FROM CUSTOMER;";
             System.out.println(query);
-            preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             if (resultSet.getInt(1) != 0) {
@@ -83,7 +82,7 @@ public class CustomerDAO {
 
     public static String getCustomerNumberById(int id) {
 
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         connection = SingleConnection.getConnection();
         String customerNumber = null;
         try {
@@ -92,7 +91,7 @@ public class CustomerDAO {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 customerNumber = String.valueOf(resultSet.getInt(1));
             }
         } catch (SQLException e) {
@@ -101,22 +100,22 @@ public class CustomerDAO {
         return customerNumber;
     }
 
-    public static int getIdByCustomerNumber(String customerNumber){
+    public static int getIdByCustomerNumber(String customerNumber) {
 
-        PreparedStatement preparedStatement = null;
         connection = SingleConnection.getConnection();
         int id = 0;
         try {
             String query = "SELECT (ID) FROM CUSTOMER WHERE CUSTOMER_NUMBER = ?;";
             System.out.println(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, customerNumber);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 id = resultSet.getInt(1);
             }
-        }catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return id;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 }

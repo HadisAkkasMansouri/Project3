@@ -15,15 +15,14 @@ public class LegalCustomerDAO {
     LegalCustomer legalCustomer = new LegalCustomer();
 
 
-    public boolean checkUniqueLegalEconomicCode(String economicCode, int id) throws DuplicateEntranceException {
+    public boolean checkUniqueLegalEconomicCode(String economicCode) throws DuplicateEntranceException {
 
         connection = SingleConnection.getConnection();
-        String query = "SELECT * FROM LEGAL_CUSTOMER WHERE ID = ?;";
+        String query = "SELECT * FROM LEGAL_CUSTOMER WHERE ECONOMIC_CODE = ?;";
         System.out.println(query);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, economicCode);
-            preparedStatement.setInt(2, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 throw new DuplicateEntranceException("کد اقتصادی وارد شده یکتا نیست٬ لطفا مجددا تلاش نمایید");
@@ -42,7 +41,7 @@ public class LegalCustomerDAO {
             int customerNum = CustomerDAO.getMaxCustomerNumber();
             String customerNumber = String.valueOf(customerNum);
             int id = CustomerDAO.addCustomer(customerNumber);
-            if (checkUniqueLegalEconomicCode(companyName, id)) {
+            if (checkUniqueLegalEconomicCode(economicCode)) {
                 connection = SingleConnection.getConnection();
                 String query = "INSERT INTO LEGAL_CUSTOMER(COMPANY_NAME, ECONOMIC_CODE, REGISTRATION_DATE, ID) values(?, ?, ?, ?)";
                 System.out.println(query);
@@ -139,8 +138,9 @@ public class LegalCustomerDAO {
         return legalCustomers;
     }
 
-    public LegalCustomer GetLegalCustomer(int id) throws SQLException {
+    public LegalCustomer getLegalCustomer(int id) throws SQLException {
 
+        String customerNumber = CustomerDAO.getCustomerNumberById(id);
         connection = SingleConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM LEGAL_CUSTOMER WHERE ID = ?;");
         preparedStatement.setInt(1, id);
@@ -150,6 +150,7 @@ public class LegalCustomerDAO {
             legalCustomer.setCompanyName(resultSet.getString("COMPANY_NAME"));
             legalCustomer.setEconomicCode(resultSet.getString("ECONOMIC_CODE"));
             legalCustomer.setRegistrationDate(resultSet.getString("REGISTRATION_DATE"));
+            legalCustomer.setCustomerNumber(customerNumber);
         }
         if (preparedStatement != null) {
             preparedStatement.close();
@@ -157,8 +158,9 @@ public class LegalCustomerDAO {
         return legalCustomer;
     }
 
-    public LegalCustomer updateLegalCustomer(String companyName, String registrationDate, String economicCode, String customerNumber) throws DuplicateEntranceException {
+    public LegalCustomer updateLegalCustomer(String companyName, String economicCode, String registrationDate, String customerNumber) throws DuplicateEntranceException {
 
+        int id = CustomerDAO.getIdByCustomerNumber(customerNumber);
         PreparedStatement preparedStatement = null;
         connection = SingleConnection.getConnection();
         try {
@@ -166,6 +168,7 @@ public class LegalCustomerDAO {
             preparedStatement.setString(1, companyName);
             preparedStatement.setString(2, economicCode);
             preparedStatement.setString(3, registrationDate);
+            preparedStatement.setInt(4, id);
             preparedStatement.executeUpdate();
 
             legalCustomer.setCompanyName(companyName);

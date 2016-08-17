@@ -14,18 +14,17 @@ public class RealCustomerDAO extends Customer {
     Connection connection = null;
     RealCustomer realCustomer = new RealCustomer();
 
-    public boolean checkUniqueRealNationalCode(String nationalCode, int id) throws DuplicateEntranceException {
+    public boolean checkUniqueRealNationalCode(String nationalCode) throws DuplicateEntranceException {
 
         connection = SingleConnection.getConnection();
-        String query = "SELECT * FROM REAL_CUSTOMER WHERE NATIONAL_CODE = ? AND ID = ?;";
+        String query = "SELECT * FROM REAL_CUSTOMER WHERE NATIONAL_CODE = ?;";
         System.out.println(query);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, nationalCode);
-            preparedStatement.setInt(2, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                throw new DuplicateEntranceException("کد ملی وارد شده باید یکتا نیست٬ لطفا مجددا تلاش نمایید");
+                throw new DuplicateEntranceException("کد ملی وارد شده یکتا نیست٬ لطفا مجددا تلاش نمایید");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,7 +40,7 @@ public class RealCustomerDAO extends Customer {
             int customerNum = CustomerDAO.getMaxCustomerNumber();
             String customerNumber = String.valueOf(customerNum);
             int id = CustomerDAO.addCustomer(customerNumber);
-            if (checkUniqueRealNationalCode(nationalCode, id)) {
+            if (checkUniqueRealNationalCode(nationalCode)) {
                 connection = SingleConnection.getConnection();
                 String query = "INSERT INTO REAL_CUSTOMER(NAME, FAMILY_NAME, FATHER_NAME, BIRTH_DATE, NATIONAL_CODE, ID) VALUES (?, ?, ?, ?, ?, ?);";
                 System.out.println(query);
@@ -100,17 +99,17 @@ public class RealCustomerDAO extends Customer {
         }
 
         if ((name != null) && (!name.trim().equals(""))) {
-            query.append(" ID.NAME = ? AND ");
+            query.append(" REAL_CUSTOMER.NAME = ? AND ");
             parameters.add(name);
         }
 
         if ((familyName != null) && (!familyName.trim().equals(""))) {
-            query.append(" ID.FAMILY_NAME = ? AND ");
+            query.append(" REAL_CUSTOMER.FAMILY_NAME = ? AND ");
             parameters.add(familyName);
         }
 
         if ((nationalCode != null) && (!nationalCode.trim().equals(""))) {
-            query.append(" ID.NATIONAL_CODE = ? AND");
+            query.append(" REAL_CUSTOMER.NATIONAL_CODE = ? AND");
             parameters.add(nationalCode);
         }
         query.append(" true ");
@@ -150,6 +149,7 @@ public class RealCustomerDAO extends Customer {
 
     public RealCustomer updateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode, String customerNumber) throws DuplicateEntranceException {
 
+        int id = CustomerDAO.getIdByCustomerNumber(customerNumber);
         connection = SingleConnection.getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -159,6 +159,7 @@ public class RealCustomerDAO extends Customer {
             preparedStatement.setString(3, fatherName);
             preparedStatement.setString(4, birthDate);
             preparedStatement.setString(5, nationalCode);
+            preparedStatement.setInt(6, id);
             preparedStatement.executeUpdate();
 
             realCustomer.setName(name);
@@ -168,12 +169,12 @@ public class RealCustomerDAO extends Customer {
             realCustomer.setNationalCode(nationalCode);
             realCustomer.setCustomerNumber(customerNumber);
         } catch (SQLException e) {
-            throw new DuplicateEntranceException("کد اقتصادی وارد شده یکتا نیست٬ لطفا مجددا تلاش نمایید");
+            throw new DuplicateEntranceException("کد ملی وارد شده یکتا نیست٬ لطفا مجددا تلاش نمایید");
         }
         return realCustomer;
     }
 
-    public RealCustomer GetRealCustomer(int id) throws SQLException {
+    public RealCustomer getRealCustomer(int id) throws SQLException {
 
         connection = SingleConnection.getConnection();
         String customerNumber = CustomerDAO.getCustomerNumberById(id);
