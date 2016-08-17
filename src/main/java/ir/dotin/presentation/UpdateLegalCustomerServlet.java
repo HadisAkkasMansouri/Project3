@@ -1,7 +1,7 @@
 package ir.dotin.presentation;
 
 import ir.dotin.business.CustomerLegalValidation;
-import ir.dotin.dataaccess.LegalCustomer;
+import ir.dotin.dataaccess.entity.LegalCustomer;
 import ir.dotin.utility.PageGenerator;
 
 import javax.servlet.ServletException;

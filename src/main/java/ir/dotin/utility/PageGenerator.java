@@ -1,7 +1,7 @@
 package ir.dotin.utility;
 
-import ir.dotin.dataaccess.LegalCustomer;
-import ir.dotin.dataaccess.RealCustomer;
+import ir.dotin.dataaccess.entity.LegalCustomer;
+import ir.dotin.dataaccess.entity.RealCustomer;
 
 import java.util.List;
 
@@ -46,8 +46,11 @@ public class PageGenerator {
         stringBuilder.append("</div>");
         stringBuilder.append("<script>");
         stringBuilder.append("function goBack() {");
-        stringBuilder.append("<a href= htmlfile/real-customer-management.html class=form></a>;}");
+        stringBuilder.append("window.history.back();}");
         stringBuilder.append("</script>");
+//        stringBuilder.append("window.location.href=htmlfile/real-customer.html;");
+//        stringBuilder.append("<input type=\"button\" onclick=\"htmlfile/real-customer.html\" value=\"صفحه قبل >>\" style='float:left; margin-left:95px;'/>");
+//        stringBuilder.append("                    <td style=\"float:left; margin-left:95px; type = button\"><a href= htmlfile/real-customer-management.html class=form>صفحه قبل >></a>");
         stringBuilder.append("</body>");
         stringBuilder.append("</html>");
         return stringBuilder.toString();

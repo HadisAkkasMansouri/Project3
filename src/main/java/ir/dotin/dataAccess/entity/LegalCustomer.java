@@ -1,4 +1,6 @@
-package ir.dotin.dataaccess;
+package ir.dotin.dataaccess.entity;
+
+import ir.dotin.dataaccess.entity.Customer;
 
 public class LegalCustomer extends Customer {
 

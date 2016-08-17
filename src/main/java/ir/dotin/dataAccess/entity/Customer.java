@@ -1,4 +1,4 @@
-package ir.dotin.dataaccess;
+package ir.dotin.dataaccess.entity;
 
 public class Customer {
 

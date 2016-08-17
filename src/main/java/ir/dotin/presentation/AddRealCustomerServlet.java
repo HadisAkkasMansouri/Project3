@@ -1,7 +1,7 @@
 package ir.dotin.presentation;
 
 import ir.dotin.business.CustomerRealValidation;
-import ir.dotin.dataaccess.RealCustomer;
+import ir.dotin.dataaccess.entity.RealCustomer;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.exception.InvalidEntranceException;
 import ir.dotin.exception.NullRequiredFieldException;
