@@ -13,7 +13,7 @@ public class CustomerDAO {
 
     public static int addCustomer(String customerNumber) throws SQLException {
 
-        int id = getMaxId();
+        int id = retrieveMaxId();
         connection = SingleConnection.getConnection();
         String query = "INSERT INTO CUSTOMER(ID, CUSTOMER_NUMBER) values (?, ?);";
         System.out.println(query);
@@ -24,7 +24,7 @@ public class CustomerDAO {
         return id;
     }
 
-    public static int getMaxCustomerNumber() {
+    public static int retrieveMaxCustomerNumber() {
 
         int customerNumber = 0;
         try {
@@ -59,7 +59,7 @@ public class CustomerDAO {
         return true;
     }
 
-    public static int getMaxId() {
+    public static int retrieveMaxId() {
 
         int id = 0;
         try {
@@ -80,7 +80,7 @@ public class CustomerDAO {
         return id;
     }
 
-    public static String getCustomerNumberById(int id) {
+    public static String retrieveCustomerNumberById(int id) {
 
         PreparedStatement preparedStatement;
         connection = SingleConnection.getConnection();
@@ -100,7 +100,7 @@ public class CustomerDAO {
         return customerNumber;
     }
 
-    public static int getIdByCustomerNumber(String customerNumber) {
+    public static int retrieveIdByCustomerNumber(String customerNumber) {
 
         connection = SingleConnection.getConnection();
         int id = 0;

@@ -1,5 +1,7 @@
 package ir.dotin.dataaccess;
 
+import ir.dotin.dataaccess.entity.Customer;
+import ir.dotin.dataaccess.entity.RealCustomer;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.utility.SingleConnection;
 import java.sql.Connection;
@@ -37,7 +39,7 @@ public class RealCustomerDAO extends Customer {
         RealCustomer realCustomer = new RealCustomer();
         PreparedStatement preparedStatement = null;
         try {
-            int customerNum = CustomerDAO.getMaxCustomerNumber();
+            int customerNum = CustomerDAO.retrieveMaxCustomerNumber();
             String customerNumber = String.valueOf(customerNum);
             int id = CustomerDAO.addCustomer(customerNumber);
             if (checkUniqueRealNationalCode(nationalCode)) {
@@ -133,7 +135,7 @@ public class RealCustomerDAO extends Customer {
             while (results.next()) {
                 RealCustomer realCustomer = new RealCustomer();
                 realCustomer.setId(results.getInt("ID"));
-                realCustomer.setCustomerNumber(CustomerDAO.getCustomerNumberById(results.getInt("ID")));
+                realCustomer.setCustomerNumber(CustomerDAO.retrieveCustomerNumberById(results.getInt("ID")));
                 realCustomer.setName(results.getString("NAME"));
                 realCustomer.setFamilyName(results.getString("FAMILY_NAME"));
                 realCustomer.setFatherName(results.getString("FATHER_NAME"));
@@ -149,7 +151,7 @@ public class RealCustomerDAO extends Customer {
 
     public RealCustomer updateRealCustomer(String name, String familyName, String fatherName, String birthDate, String nationalCode, String customerNumber) throws DuplicateEntranceException {
 
-        int id = CustomerDAO.getIdByCustomerNumber(customerNumber);
+        int id = CustomerDAO.retrieveIdByCustomerNumber(customerNumber);
         connection = SingleConnection.getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -177,7 +179,7 @@ public class RealCustomerDAO extends Customer {
     public RealCustomer getRealCustomer(int id) throws SQLException {
 
         connection = SingleConnection.getConnection();
-        String customerNumber = CustomerDAO.getCustomerNumberById(id);
+        String customerNumber = CustomerDAO.retrieveCustomerNumberById(id);
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM REAL_CUSTOMER WHERE ID = ?;");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();

@@ -1,5 +1,6 @@
 package ir.dotin.dataaccess;
 
+import ir.dotin.dataaccess.entity.LegalCustomer;
 import ir.dotin.exception.DuplicateEntranceException;
 import ir.dotin.utility.SingleConnection;
 import java.sql.Connection;
@@ -38,7 +39,7 @@ public class LegalCustomerDAO {
         LegalCustomer legalCustomer = new LegalCustomer();
         PreparedStatement preparedStatement = null;
         try {
-            int customerNum = CustomerDAO.getMaxCustomerNumber();
+            int customerNum = CustomerDAO.retrieveMaxCustomerNumber();
             String customerNumber = String.valueOf(customerNum);
             int id = CustomerDAO.addCustomer(customerNumber);
             if (checkUniqueLegalEconomicCode(economicCode)) {
@@ -126,7 +127,7 @@ public class LegalCustomerDAO {
             while (results.next()) {
                 LegalCustomer legalCustomer = new LegalCustomer();
                 legalCustomer.setId(results.getInt("ID"));
-                legalCustomer.setCustomerNumber(CustomerDAO.getCustomerNumberById(results.getInt("ID")));
+                legalCustomer.setCustomerNumber(CustomerDAO.retrieveCustomerNumberById(results.getInt("ID")));
                 legalCustomer.setCompanyName(results.getString("COMPANY_NAME"));
                 legalCustomer.setEconomicCode(results.getString("ECONOMIC_CODE"));
                 legalCustomer.setRegistrationDate(results.getString("REGISTRATION_DATE"));
@@ -140,7 +141,7 @@ public class LegalCustomerDAO {
 
     public LegalCustomer getLegalCustomer(int id) throws SQLException {
 
-        String customerNumber = CustomerDAO.getCustomerNumberById(id);
+        String customerNumber = CustomerDAO.retrieveCustomerNumberById(id);
         connection = SingleConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM LEGAL_CUSTOMER WHERE ID = ?;");
         preparedStatement.setInt(1, id);
@@ -160,7 +161,7 @@ public class LegalCustomerDAO {
 
     public LegalCustomer updateLegalCustomer(String companyName, String economicCode, String registrationDate, String customerNumber) throws DuplicateEntranceException {
 
-        int id = CustomerDAO.getIdByCustomerNumber(customerNumber);
+        int id = CustomerDAO.retrieveIdByCustomerNumber(customerNumber);
         PreparedStatement preparedStatement = null;
         connection = SingleConnection.getConnection();
         try {
@@ -180,24 +181,5 @@ public class LegalCustomerDAO {
             throw new DuplicateEntranceException("کد اقتصادی وارد شده یکتا نیست٬ لطفا مجددا تلاش نمایید");
         }
         return legalCustomer;
-    }
-
-    public boolean checkLegalEconomicId(String economicCode, String customerNumber) {
-
-        connection = SingleConnection.getConnection();
-        String query = "SELECT * FROM LEGAL_CUSTOMER WHERE ECONOMIC_CODE = ? AND CUSTOMER_NUMBER != ?;";
-        System.out.println(query);
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, economicCode);
-            preparedStatement.setString(2, customerNumber);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
     }
 }
