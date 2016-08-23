@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class SingleConnection {
 
-    Logger logger = Logger.getLogger("connectionLog");
+    private Logger logger = Logger.getLogger("connectionLog");
     private Connection connect = null;
     private static SingleConnection instance = new SingleConnection();
 
